@@ -1,0 +1,10 @@
+[AbnormityInfo]
+INFO_1=2022-6-9 14:7:15 into AlgPage
+INFO_2=2022-6-9 14:7:19 into CarveSetting
+INFO_3=2022-6-9 14:7:20 into AlgPage
+INFO_4=2022-6-9 14:7:21 into CarveSetting
+INFO_5=2022-6-9 14:7:22 into AlgPage
+INFO_6=2022-6-9 14:7:23 into CarveSetting
+
+[setup]
+total=6
