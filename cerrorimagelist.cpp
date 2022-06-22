@@ -26,18 +26,16 @@ CErrorImageList::CErrorImageList(QWidget *parent)
 	labelTotal = new QLabel(this);
 	labelFailur = new QLabel(this);
 	labelFailurRate = new QLabel(this);
-	//labelModleRate = new QLabel(this);
-
+	
 	labelTotal->setAlignment(Qt::AlignCenter);
 	labelFailur->setAlignment(Qt::AlignCenter);
 	labelFailurRate->setAlignment(Qt::AlignCenter);
-	//labelModleRate->setAlignment(Qt::AlignCenter);
+	
 	QFont fontLable("ËÎÌו",9,QFont::DemiBold,false);
-	//fontLable.setPixelSize(15);
+
 	labelTotal->setFont(fontLable);
 	labelFailur->setFont(fontLable);
 	labelFailurRate->setFont(fontLable);
-	//labelModleRate->setFont(fontLable);
 
 	QHBoxLayout *hLayoutName = new QHBoxLayout;
 	hLayoutName->addWidget(widgetName);
@@ -49,15 +47,12 @@ CErrorImageList::CErrorImageList(QWidget *parent)
 	frame->setFrameShape(QFrame::VLine);
 	QFrame *frame2 = new QFrame(this);
 	frame2->setFrameShape(QFrame::VLine);
-	//QFrame *frame3 = new QFrame(this);
-	//frame3->setFrameShape(QFrame::VLine);
+
 	hLayoutCount->addWidget(labelTotal);
 	hLayoutCount->addWidget(frame);
 	hLayoutCount->addWidget(labelFailur);
 	hLayoutCount->addWidget(frame2);
 	hLayoutCount->addWidget(labelFailurRate);
-	//hLayoutCount->addWidget(frame3);
-	//hLayoutCount->addWidget(labelModleRate);
 
 	QVBoxLayout *vLayoutListError = new QVBoxLayout(this);
 	vLayoutListError->addLayout(hLayoutName);
@@ -69,7 +64,6 @@ CErrorImageList::CErrorImageList(QWidget *parent)
 
 	connect(m_ListErrorWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(slots_ShowSelectImage(QModelIndex)));
 	connect(btnClear, SIGNAL(clicked()), this, SLOT(slots_clearTable()));
-
 
  	for (int i = 0;i<pMainFrm->m_sSystemInfo.iCamCount;i++)
 	{

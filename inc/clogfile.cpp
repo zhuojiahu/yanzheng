@@ -70,7 +70,6 @@ void WriteLogThread::WaitThreadStop()
 {
 	if (isRunning())
 	{
-		//m_bExitSystem = true;	//关闭系统标志位
 		if (!m_bStopThread)
 		{
 			m_bStopThread = true;

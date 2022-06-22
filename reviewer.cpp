@@ -221,20 +221,8 @@ void Reviewer::initInterface()
 	m_sSystemInfo.m_strModelName = m_sConfigInfo.m_strGrabInfoPath;
 	//切割后相机个数
 	m_sSystemInfo.iCamCount = iniset.value("/system/CarveDeviceCount",1).toInt();
+	m_sSystemInfo.m_iTrackNumber = 0;
 	initLastData();
-	//以后二代机环线校验预留
-	/*if(pMainFrm->m_sSystemInfo.m_iSystemType != 2)
-	{
-	int mXuCamera = m_sSystemInfo.iRealCamCount;
-	if(mXuCamera%2 != 0)
-	{
-	mXuCamera++;
-	}
-	if(m_sSystemInfo.iCamCount>mXuCamera+mXuCamera/2)
-	{
-	m_sSystemInfo.iCamCount = mXuCamera+mXuCamera/2;
-	}
-	}*/
 	for (int i=0;i<m_sSystemInfo.iCamCount;i++)
 	{
 		pdetthread[i] = NULL;
@@ -250,7 +238,6 @@ void Reviewer::initInterface()
 		strcpy_s(struGrabCardPara[i].strDeviceMark,"6735372222222220609");
 		m_sRealCamInfo[i].m_iImageRoAngle = iniset.value(QString("/RoAngle/Device_%1").arg(i+1),0).toInt();
 		m_sRealCamInfo[i].m_iImageType = iniset.value(QString("/ImageType/Device_%1").arg(i+1),0).toInt();
-		//采集卡文件路径与config所在文件夹相同
 		QString strGrabInitFile = m_sConfigInfo.m_strConfigPath.left(m_sConfigInfo.m_strConfigPath.findRev("/")+1) + QString("SimulateGrabberConfig%1.ini").arg(i+1);
 		memcpy(struGrabCardPara[i].strGrabberFile,strGrabInitFile.toLocal8Bit().data(),GBMaxTextLen);
 	}
@@ -261,8 +248,6 @@ void Reviewer::initInterface()
 		m_bIsThreadDead = FALSE;
 		pdetthread[i]->start();
 	}
-
-	//setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog  | Qt::WindowSystemMenuHint);
 	QDesktopWidget* desktopWidget = QApplication::desktop();
 	QRect screenRect = desktopWidget->screenGeometry();
 	setMinimumSize(screenRect.width()*2/3,screenRect.height()*2/3);
@@ -312,7 +297,6 @@ void Reviewer::initInterface()
 
 	for (int i=0;i<m_sSystemInfo.iRealCamCount;i++)
 	{
-		//回调
 		struGrabCardPara[i].CallBackFunc = GlobalGrabOverCallback;
 		struGrabCardPara[i].Context = this;
 		InitGrabCard(struGrabCardPara[i],i);
@@ -485,7 +469,7 @@ void Reviewer::slots_turnPage(int current_page, int iPara)
 	{
 		return;
 	}
-	if(current_page == 0 || current_page == 1)
+	/*if(current_page == 0 || current_page == 1)
 	{
 		s_Status  sReturnStatus;
 		sReturnStatus = m_cBottleModel.CloseModelDlg();
@@ -493,7 +477,7 @@ void Reviewer::slots_turnPage(int current_page, int iPara)
 		{
 			return ;
 		}
-	}
+	}*/
 
 	switch (current_page)
 	{
@@ -519,7 +503,10 @@ void Reviewer::slots_turnPage(int current_page, int iPara)
 		slots_OnBtnStar();
 		break;
 	case 5:
-		slots_Clear();
+		if (QMessageBox::Yes== QMessageBox::question(this,tr("Exit"),tr("Are you sure to clear?"),QMessageBox::Yes | QMessageBox::No))	
+		{
+			slots_Clear();
+		}
 		break;
 	case 6:
 		break;
@@ -540,7 +527,7 @@ void Reviewer::slots_OnBtnStar()
 		m_cCombine.RemovAllResult();
 		m_cCombine.RemovAllError();
 		m_cCombine.m_MutexCombin.unlock();
-
+		pMainFrm->m_sSystemInfo.m_iTrackNumber = 0;
 		if (m_sSystemInfo.m_bLoadModel)
 		{
 			for (int i = 0; i < m_sSystemInfo.iCamCount;i++)
@@ -635,16 +622,14 @@ void Reviewer::InitCheckSet()
 			pMainFrm->Logfile.write(tr("----camera%1 load model error----").arg(i),AbnormityLog);
 			return;
 		}
-		if (sReturnStatus.nErrorID == 1) //模板为空
+		if (sReturnStatus.nErrorID == 1)
 		{
-			//模板为空
 			m_sSystemInfo.m_bLoadModel =  FALSE;  //如果模板为空，则不能检测 
 		}
 		else
 		{
 			m_sSystemInfo.m_bLoadModel =  TRUE;  //成功载入上一次的模板
 		}
-		// 旋转类 [12/10/2010]
 		sAlgInitParam.nModelType = 99;  //检测类型
 		memset(sAlgInitParam.chModelName,0,MAX_PATH); //模板名称
 		m_cBottleRotate[i].init(sAlgInitParam);

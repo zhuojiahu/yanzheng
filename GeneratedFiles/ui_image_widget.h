@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'image_widget.ui'
 **
-** Created: Tue Jun 21 14:23:04 2022
+** Created: Tue Jun 21 16:59:46 2022
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

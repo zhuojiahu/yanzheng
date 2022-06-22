@@ -17,8 +17,8 @@ public:
 signals:
 	void signals_updateActiveImg(int nCamNo,int nImgNo,double dCostTime,int tmpResult);
 	void signals_AddErrorTableView(int nCamSN,int nSignalNo,int nErrorType);
-	void signals_upDateCamera(int nCam,int nMode = 0);
-	void signals_updateCameraFailureRate();
+	void signals_SaveReport();
+	//void signals_updateCameraFailureRate();
 	void signals_updateImage(QImage*, QString, QString, QString, QString, QString, QList<QRect> ,int );
 private:
 	void DetectNormal(CGrabElement *pElement,int pLocation);
@@ -39,7 +39,6 @@ private:
 	int iMaxErrorType;
 	int iMaxErrorArea;
 	CSpendTime checkTimecost;
-	QDir *dirSaveImagePath;
 	//调用算法
 	s_AlgCInP sAlgCInp;						//检测输入参数
 	s_AlgCheckResult *pAlgCheckResult;		//返回检测结果结构体
@@ -47,7 +46,6 @@ private:
 	s_Loc_Ori tempOri;
 public:
 	int iCamera;
-	int iImageNo;
 };
 
 #endif

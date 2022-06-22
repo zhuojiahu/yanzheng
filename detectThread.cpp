@@ -9,14 +9,13 @@ DetectThread::DetectThread(QObject *parent,int temp)
 {
 	m_threadId = temp;
 	m_bStopThread = false;
-	dirSaveImagePath = new QDir;
 	iMaxErrorType = 0;
 	iMaxErrorArea = 0;
 	iErrorType = 0;
 }
 DetectThread::~DetectThread()
 {
-	delete dirSaveImagePath;
+
 }
 void DetectThread::run()
 {
@@ -139,7 +138,7 @@ void DetectThread::rotateImage(CGrabElement *pElement)
 	if(pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageAngle != 0)
 	{
 		sAlgCInp.nParam = pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageAngle;
-		pMainFrm->m_cBottleRotate[iCamera].Check(sAlgCInp, &pAlgCheckResult);
+		//pMainFrm->m_cBottleRotate[iCamera].Check(sAlgCInp, &pAlgCheckResult);
 	}
 }
 //检测
@@ -149,8 +148,6 @@ void DetectThread::checkImage(CGrabElement *pElement,int iCheckMode)
 	sAlgCInp.sInputParam.nWidth = pElement->myImage->width();
 	sAlgCInp.sInputParam.nChannel = 1;
 	sAlgCInp.sInputParam.pcData = (char*)pElement->myImage->bits();
-	//sReturnStatus = pMainFrm->m_cBottleCheck[iCamera].Check(sAlgCInp,&pAlgCheckResult);
-
 	if (0 == iCheckMode)
 	{
 		sReturnStatus = pMainFrm->m_cBottleCheck[iCamera].Check(sAlgCInp,&pAlgCheckResult);
@@ -160,7 +157,7 @@ void DetectThread::checkImage(CGrabElement *pElement,int iCheckMode)
 			pAlgCheckResult->sImgLocInfo.sXldPoint.nColsAry,4*BOTTLEXLD_POINTNUM);														
 		memcpy(pMainFrm->m_sCarvedCamInfo[iCamera].sImageLocInfo[pElement->nSignalNo].m_AlgImageLocInfos.sXldPoint.nRowsAry, \
 			pAlgCheckResult->sImgLocInfo.sXldPoint.nRowsAry,4*BOTTLEXLD_POINTNUM);
-		
+
 		SetEvent(pMainFrm->m_pHandles[iCamera]);
 		pMainFrm->m_sCarvedCamInfo[iCamera].sImageLocInfo[pElement->nSignalNo].m_iHaveInfo = 1;
 	}
@@ -178,7 +175,7 @@ void DetectThread::checkImage(CGrabElement *pElement,int iCheckMode)
 				return;
 			}
 		}
-		
+
 		pElement->sImgLocInfo.sLocOri = pMainFrm->m_sCarvedCamInfo[normalCamera].sImageLocInfo[pElement->nSignalNo].m_AlgImageLocInfos.sLocOri;
 		pElement->sImgLocInfo.sXldPoint.nCount = pMainFrm->m_sCarvedCamInfo[normalCamera].sImageLocInfo[pElement->nSignalNo].m_AlgImageLocInfos.sXldPoint.nCount;
 
@@ -186,7 +183,7 @@ void DetectThread::checkImage(CGrabElement *pElement,int iCheckMode)
 			pMainFrm->m_sCarvedCamInfo[normalCamera].sImageLocInfo[pElement->nSignalNo].m_AlgImageLocInfos.sXldPoint.nColsAry,4*BOTTLEXLD_POINTNUM);							
 		memcpy(pElement->sImgLocInfo.sXldPoint.nRowsAry,\
 			pMainFrm->m_sCarvedCamInfo[normalCamera].sImageLocInfo[pElement->nSignalNo].m_AlgImageLocInfos.sXldPoint.nRowsAry,4*BOTTLEXLD_POINTNUM);
-		
+
 		if(pElement->sImgLocInfo.sLocOri.modelCol == 0 || pElement->sImgLocInfo.sLocOri.modelRow == 0)
 		{
 			pElement->sImgLocInfo.sLocOri = tempOri;
@@ -243,7 +240,7 @@ bool DetectThread::getCheckResult(CGrabElement *pElement)
 			{
 				pElement->cErrorRectList.append(rect);
 				pElement->cErrorParaList.append(sErrorPara);
-				emit signals_upDateCamera(iCamera,1 );
+				//emit signals_upDateCamera(iCamera,1 );
 			}
 			pMainFrm->m_cCombine.AddError(pElement->nSignalNo,iCamera,sErrorPara);
 		}	
@@ -253,13 +250,11 @@ bool DetectThread::getCheckResult(CGrabElement *pElement)
 	}
 	else//没有错误加入
 	{
-		emit signals_upDateCamera(iCamera,0);
+		//emit signals_upDateCamera(iCamera,0);
 		s_ErrorPara sErrorPara;
 		sErrorPara.nArea = 0;
 		sErrorPara.nErrorType = 0;
-		//pMainFrm->m_cCombine.m_MutexCombin.lock();
 		pMainFrm->m_cCombine.AddError(pElement->nSignalNo,iCamera,sErrorPara);
-		//pMainFrm->m_cCombine.m_MutexCombin.unlock();
 	}
 	return true;
 }
@@ -276,147 +271,25 @@ void DetectThread::CountDefectIOCard(int nSignalNo,int tmpResult)
 		{
 			pMainFrm->m_sRunningInfo.m_failureNumFromIOcard++;
 		}
-		if (pMainFrm->m_sRunningInfo.m_bCheck)	
+		int iErrorCamera = pMainFrm->m_cCombine.ErrorCamera(nSignalNo);
+		s_ErrorPara sComErrorpara = pMainFrm->m_cCombine.ConbineError(nSignalNo);
+		if (pMainFrm->m_sRunningInfo.m_cErrorTypeInfo[iErrorCamera].ErrorTypeJudge(sComErrorpara.nErrorType))
 		{
-			int iErrorCamera = pMainFrm->m_cCombine.ErrorCamera(nSignalNo);
-			s_ErrorPara sComErrorpara = pMainFrm->m_cCombine.ConbineError(nSignalNo);
-			if (pMainFrm->m_sRunningInfo.m_cErrorTypeInfo[iErrorCamera].ErrorTypeJudge(sComErrorpara.nErrorType))
-			{
-				pMainFrm->m_sRunningInfo.m_cErrorTypeInfo[iErrorCamera].iErrorCountByType[sComErrorpara.nErrorType]+=1;
-				pMainFrm->m_sRunningInfo.m_iErrorCamCount[iErrorCamera] += 1;//缺陷相机计数
-				pMainFrm->m_sRunningInfo.m_iErrorTypeCount[sComErrorpara.nErrorType] +=1;//每种缺陷的计数统计
-			}
+			pMainFrm->m_sRunningInfo.m_cErrorTypeInfo[iErrorCamera].iErrorCountByType[sComErrorpara.nErrorType]+=1;
+			pMainFrm->m_sRunningInfo.m_iErrorCamCount[iErrorCamera] += 1;//缺陷相机计数
+			pMainFrm->m_sRunningInfo.m_iErrorTypeCount[sComErrorpara.nErrorType] +=1;//每种缺陷的计数统计
+		}else{
+			pMainFrm->m_sRunningInfo.m_cErrorTypeInfo[iErrorCamera].iErrorCountByType[0]+=1;
+			pMainFrm->m_sRunningInfo.m_iErrorTypeCount[0] +=1;
+		}
+		if(++pMainFrm->m_sSystemInfo.m_iTrackNumber == pMainFrm->widget_carveSetting->image_widget->NCamCount)
+		{
+			//数据收集齐全，发送到报表做统计
+			emit signals_SaveReport();
 		}
 	}
 }
 
-void DetectThread::saveImage(CGrabElement *pElement)
-{
-	if (1 == pMainFrm->m_sSystemInfo.m_iSaveNormalErrorImageByTime)
-	{
-		if (bCheckResult[iCamera])
-		{
-			QDateTime time = QDateTime::currentDateTime();
-			QString strSaveImagePath = QString(pMainFrm->m_sConfigInfo.m_strAppPath + tr("SaveImageByTime\\") +\
-				tr("normal image\\") + time.date().toString("yyyy-MM-dd") + tr("\\camera%1").arg(iCamera+1)) + "\\" + time.time().toString("hh");
-			bool exist = dirSaveImagePath->exists(strSaveImagePath);
-			if(!exist)
-			{
-				dirSaveImagePath->mkpath(strSaveImagePath);
-			}
-			QString strSavePath = QString(strSaveImagePath + "/image number%1_%2%3%4_%5.bmp").arg(iCamera+1).arg(pElement->nSignalNo).arg(time.time().hour()).arg(time.time().minute()).arg(time.time().second());
-			pElement->myImage->mirrored().save(strSavePath);
-		}
-	}
-	if (1 == pMainFrm->m_sSystemInfo.m_iSaveStressErrorImageByTime)
-	{
-		if (bCheckResult[iCamera])
-		{
-			QDateTime time = QDateTime::currentDateTime();
-			QString strSaveImagePath = QString(pMainFrm->m_sConfigInfo.m_strAppPath + tr("SaveImageByTime\\") +\
-				tr("stress image\\") + time.date().toString("yyyy-MM-dd") + tr("\\camera%1").arg(iCamera+1)) + "\\" + time.time().toString("hh");
-			bool exist = dirSaveImagePath->exists(strSaveImagePath);
-			if(!exist)
-			{
-				dirSaveImagePath->mkpath(strSaveImagePath);
-			}
-			QString strSavePath = QString(strSaveImagePath + "/image number%1_%2%3%4_%5.bmp").arg(iCamera+1).arg(pElement->nSignalNo).arg(time.time().hour()).arg(time.time().minute()).arg(time.time().second());
-			pElement->myImage->mirrored().save(strSavePath);
-		}
-
-	}
-	if (AllImage == pMainFrm->m_sRunningInfo.m_eSaveImageType || AllImageInCount == pMainFrm->m_sRunningInfo.m_eSaveImageType)
-	{
-		if (0 == pMainFrm->m_sSystemInfo.m_bSaveCamera[iCamera])
-		{
-			return;
-		}
-		QTime time = QTime::currentTime();
-		QString strSaveImagePath = QString(pMainFrm->m_sConfigInfo.m_strAppPath + "SaveImage/All-image/camera%1/").arg(iCamera+1);
-		bool exist = dirSaveImagePath->exists(strSaveImagePath);
-		if(!exist)
-		{
-			dirSaveImagePath->mkpath(strSaveImagePath);
-		}
-		if (AllImage == pMainFrm->m_sRunningInfo.m_eSaveImageType)
-		{
-			QString strSavePath = QString(strSaveImagePath + "image_%1_%2%3%4_%5_%6.bmp").arg(iCamera+1).arg(pElement->nSignalNo).arg(time.hour()).arg(time.minute()).arg(time.second()).arg(time.msec());
-			pElement->myImage->mirrored().save(strSavePath);
-		}
-		if (AllImageInCount == pMainFrm->m_sRunningInfo.m_eSaveImageType)
-		{
-			pMainFrm->m_sRunningInfo.m_mutexRunningInfo.lock();
-			if (pMainFrm->m_sRunningInfo.m_iSaveImgCount[iCamera] > 0)
-			{
-				QString strSavePath = QString(strSaveImagePath + "image_%1_%2%3%4_%5_%6.bmp").arg(iCamera+1).arg(pElement->nSignalNo).arg(time.hour()).arg(time.minute()).arg(time.second()).arg(time.msec());
-				pElement->myImage->mirrored().save(strSavePath);
-				pMainFrm->m_sRunningInfo.m_iSaveImgCount[iCamera]--;
-			}
-			int itempSavemode = 0;
-			for (int i = 0 ; i<pMainFrm->m_sSystemInfo.iCamCount;i++)
-			{
-				if (pMainFrm->m_sSystemInfo.m_bSaveCamera[i] == 1)
-				{
-					itempSavemode = 1;
-				}
-			}
-			if (0 == itempSavemode)
-			{
-				pMainFrm->m_sRunningInfo.m_eSaveImageType = NotSave;
-			}
-			pMainFrm->m_sRunningInfo.m_mutexRunningInfo.unlock();
-		}
-	}else if (FailureImage == pMainFrm->m_sRunningInfo.m_eSaveImageType||FailureImageInCount == pMainFrm->m_sRunningInfo.m_eSaveImageType)
-	{
-		if (0 == pMainFrm->m_sSystemInfo.m_bSaveCamera[iCamera])
-		{
-			return;
-		}
-		if (0 == pMainFrm->m_sSystemInfo.m_bSaveErrorType[iErrorType])
-		{
-			return;
-		}
-		QTime time = QTime::currentTime();
-		QString strSaveImagePath = QString(pMainFrm->m_sConfigInfo.m_strAppPath + "SaveImage/Failure-image/camera%1").arg(iCamera+1);
-		bool exist = dirSaveImagePath->exists(strSaveImagePath);
-		if(!exist)
-		{
-			dirSaveImagePath->mkpath(strSaveImagePath);
-		}
-		if (FailureImage == pMainFrm->m_sRunningInfo.m_eSaveImageType)
-		{
-			QString strSavePath = QString(strSaveImagePath + "/image_%1_%2%3%4_%5_%6.bmp").arg(iCamera+1).arg(pElement->nSignalNo).arg(time.hour()).arg(time.minute()).arg(time.second()).arg(time.msec());
-			pElement->myImage->mirrored().save(strSavePath);
-		}
-		if (FailureImageInCount == pMainFrm->m_sRunningInfo.m_eSaveImageType)
-		{
-			pMainFrm->m_sRunningInfo.m_mutexRunningInfo.lock();
-			if (pMainFrm->m_sRunningInfo.m_iSaveImgCount[iCamera] > 0)
-			{
-				QString strSavePath = QString(strSaveImagePath + "/image_%1_%2%3%4_%5_%6.bmp").arg(iCamera+1).arg(pElement->nSignalNo).arg(time.hour()).arg(time.minute()).arg(time.second()).arg(time.msec());
-				pElement->myImage->mirrored().save(strSavePath);
-				pMainFrm->m_sRunningInfo.m_iSaveImgCount[iCamera]--;
-			}
-			if (0 == pMainFrm->m_sRunningInfo.m_iSaveImgCount[iCamera])
-			{
-				pMainFrm->m_sSystemInfo.m_bSaveCamera[iCamera] = 0;
-			}
-			int itempSavemode = 0;
-			for (int i = 0 ; i<pMainFrm->m_sSystemInfo.iCamCount;i++)
-			{
-				if (pMainFrm->m_sSystemInfo.m_bSaveCamera[i] == 1)
-				{
-					itempSavemode = 1;
-				}
-			}
-			if (0 == itempSavemode)
-			{
-				pMainFrm->m_sRunningInfo.m_eSaveImageType = NotSave;
-			}
-			pMainFrm->m_sRunningInfo.m_mutexRunningInfo.unlock();
-		}
-	}
-}
 //将缺陷图像加入错误链表
 void DetectThread::addErrorImageList(CGrabElement *pElement)
 {

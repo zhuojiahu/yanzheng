@@ -47,13 +47,11 @@ private slots:
 	void slots_OpenRecord();
 	void slots_DeleteRecord();
 	bool slots_SaveCountHourInfoBytime();
-	bool slots_ClearCountInfo();
 	void slots_saveRecordOK();
 	void slots_saveRecordCancel();
 	void slots_shiftOK();
 	void slots_shiftCancel();
 	void slots_turn();
-	void slots_updateInfo();
 	bool slots_InsertCountCameraInfo();
 	bool slots_InsertCountHourInfo();	
 public:

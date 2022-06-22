@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget_count.h'
 **
-** Created: Tue Jun 21 14:23:03 2022
+** Created: Wed Jun 22 14:39:32 2022
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

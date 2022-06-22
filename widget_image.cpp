@@ -161,7 +161,7 @@ void ImageWidget::initDialog()
 		connect(imageShowItem,SIGNAL(signals_stopShow(int)),this,SLOT(slots_stopShow(int)));
 		connect(imageShowItem,SIGNAL(signals_startShowAll()),this,SLOT(slots_startShowAll()));
 		connect(pMainFrm->pdetthread[i],SIGNAL(signals_updateImage(QImage*, QString, QString, QString ,QString, QString, QList<QRect>,int )),imageShowItem,SLOT(slots_updateImage(QImage*, QString , QString ,QString , QString, QString, QList<QRect>,int )));
-		connect(pMainFrm->pdetthread[i], SIGNAL(signals_AddErrorTableView(int,int,int)), this, SLOT(slots_addError(int,int,int)));
+		//connect(pMainFrm->pdetthread[i], SIGNAL(signals_SaveReport()),pMainFrm->Count_widget->widgetCountSet, SLOT(slots_SaveCountInfo()));
 	}
 }
 

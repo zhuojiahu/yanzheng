@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'detectThread.h'
 **
-** Created: Tue Jun 21 14:23:04 2022
+** Created: Wed Jun 22 14:40:17 2022
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,20 +23,18 @@ static const uint qt_meta_data_DetectThread[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       6,       // signalCount
+       4,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       48,   14,   13,   13, 0x05,
      120,   92,   13,   13, 0x05,
-     170,  159,   13,   13, 0x05,
-     205,  200,   13,   13, 0x25,
-     231,   13,   13,   13, 0x05,
-     273,  265,   13,   13, 0x05,
+     159,   13,   13,   13, 0x05,
+     188,  180,   13,   13, 0x05,
 
        0        // eod
 };
@@ -46,10 +44,7 @@ static const char qt_meta_stringdata_DetectThread[] = {
     "signals_updateActiveImg(int,int,double,int)\0"
     "nCamSN,nSignalNo,nErrorType\0"
     "signals_AddErrorTableView(int,int,int)\0"
-    "nCam,nMode\0signals_upDateCamera(int,int)\0"
-    "nCam\0signals_upDateCamera(int)\0"
-    "signals_updateCameraFailureRate()\0"
-    ",,,,,,,\0"
+    "signals_SaveReport()\0,,,,,,,\0"
     "signals_updateImage(QImage*,QString,QString,QString,QString,QString,QL"
     "ist<QRect>,int)\0"
 };
@@ -62,10 +57,8 @@ void DetectThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         switch (_id) {
         case 0: _t->signals_updateActiveImg((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
         case 1: _t->signals_AddErrorTableView((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
-        case 2: _t->signals_upDateCamera((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 3: _t->signals_upDateCamera((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->signals_updateCameraFailureRate(); break;
-        case 5: _t->signals_updateImage((*reinterpret_cast< QImage*(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6])),(*reinterpret_cast< QList<QRect>(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
+        case 2: _t->signals_SaveReport(); break;
+        case 3: _t->signals_updateImage((*reinterpret_cast< QImage*(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6])),(*reinterpret_cast< QList<QRect>(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
         default: ;
         }
     }
@@ -103,9 +96,9 @@ int DetectThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 4;
     }
     return _id;
 }
@@ -125,22 +118,15 @@ void DetectThread::signals_AddErrorTableView(int _t1, int _t2, int _t3)
 }
 
 // SIGNAL 2
-void DetectThread::signals_upDateCamera(int _t1, int _t2)
+void DetectThread::signals_SaveReport()
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
-    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+    QMetaObject::activate(this, &staticMetaObject, 2, 0);
 }
 
-// SIGNAL 4
-void DetectThread::signals_updateCameraFailureRate()
-{
-    QMetaObject::activate(this, &staticMetaObject, 4, 0);
-}
-
-// SIGNAL 5
+// SIGNAL 3
 void DetectThread::signals_updateImage(QImage * _t1, QString _t2, QString _t3, QString _t4, QString _t5, QString _t6, QList<QRect> _t7, int _t8)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)), const_cast<void*>(reinterpret_cast<const void*>(&_t6)), const_cast<void*>(reinterpret_cast<const void*>(&_t7)), const_cast<void*>(reinterpret_cast<const void*>(&_t8)) };
-    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 QT_END_MOC_NAMESPACE

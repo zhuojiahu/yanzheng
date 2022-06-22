@@ -69,13 +69,11 @@ public:
 	ImageSave m_SavePicture[CAMERA_MAX_COUNT];
 	CBottleCheck m_cBottleCheck[CAMERA_MAX_COUNT];
 	CBottleCheck m_cBottleRotate[CAMERA_MAX_COUNT];
-	CBottleCheck m_cBottleStress[CAMERA_MAX_COUNT];	
+	CBottleCheck m_cBottleStress[CAMERA_MAX_COUNT];
 	s_RealCamInfo m_sRealCamInfo[CAMERA_MAX_COUNT];
 	s_CarvedCamInfo m_sCarvedCamInfo[CAMERA_MAX_COUNT];
 	CDetectElement m_detectElement[CAMERA_MAX_COUNT];
 	QMutex mutexDetectElement[CAMERA_MAX_COUNT];
-public:
-	int nCamereCount;
 };
 
 #endif // REVIEWER_H
