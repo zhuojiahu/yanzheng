@@ -163,15 +163,6 @@
     <ClCompile Include="widget_count.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Widget_CountPlot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Widget_CountPlot.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_Widget_CountPlot.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_widget_count.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -269,9 +260,6 @@
     </CustomBuild>
     <CustomBuild Include="image_widget.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Widget_CountPlot.h">
-      <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="widget_count.h">
       <Filter>Header Files</Filter>

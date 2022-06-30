@@ -49,8 +49,6 @@ public:
 public slots:
 	void slots_ShowPie(QModelIndex);
 	void slots_check();
-	void slots_Export();
-
 protected:
 	void resizeEvent(QResizeEvent *event);
 

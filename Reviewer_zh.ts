@@ -107,53 +107,51 @@
         <translation type="obsolete">统计信息</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="143"/>
         <source>Save</source>
-        <translation type="unfinished">保存报表</translation>
+        <translation type="obsolete">保存报表</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="167"/>
         <source>Clear</source>
-        <translation type="unfinished">计数清零</translation>
+        <translation type="obsolete">计数清零</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="292"/>
+        <location filename="countset.ui" line="148"/>
         <source>Open record</source>
         <translation type="unfinished">打开报表</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="208"/>
+        <location filename="countset.ui" line="64"/>
         <source>Delete record</source>
         <translation type="unfinished">删除报表</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="255"/>
+        <location filename="countset.ui" line="111"/>
         <source>TimeQuery</source>
         <translation type="unfinished">时间查询</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="260"/>
+        <location filename="countset.ui" line="116"/>
         <source>ShiftQuery</source>
         <translation type="unfinished">班次查询</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="385"/>
+        <location filename="countset.ui" line="241"/>
         <source>Save Record</source>
         <translation type="unfinished">保存报表</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="370"/>
+        <location filename="countset.ui" line="226"/>
         <source>Save record every 30minite</source>
         <translation type="unfinished">每30分钟保存一次</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="397"/>
+        <location filename="countset.ui" line="253"/>
         <source>Save record every 60minite</source>
         <translation type="unfinished">每60分钟保存一次</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="332"/>
-        <location filename="countset.ui" line="527"/>
+        <location filename="countset.ui" line="188"/>
+        <location filename="countset.ui" line="383"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
     </message>
@@ -163,37 +161,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="countset.ui" line="356"/>
-        <location filename="countset.ui" line="551"/>
+        <location filename="countset.ui" line="212"/>
+        <location filename="countset.ui" line="407"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="428"/>
+        <location filename="countset.ui" line="284"/>
         <source>Shift1:</source>
         <translation type="unfinished">班次1：</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="453"/>
+        <location filename="countset.ui" line="309"/>
         <source>Shift2:</source>
         <translation type="unfinished">班次2：</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="478"/>
+        <location filename="countset.ui" line="334"/>
         <source>Shift3:</source>
         <translation type="unfinished">班次3：</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="501"/>
+        <location filename="countset.ui" line="357"/>
         <source>AutoSetZero</source>
         <translation type="unfinished">自动清零</translation>
     </message>
     <message>
-        <location filename="countset.ui" line="58"/>
-        <location filename="countset.ui" line="85"/>
-        <location filename="countset.ui" line="112"/>
         <source>TextLabel</source>
-        <translation type="unfinished"> </translation>
+        <translation type="obsolete"> </translation>
     </message>
 </context>
 <context>
@@ -252,35 +247,29 @@
         <translation type="obsolete">队列2综合，图像号：%1，结果：%2</translation>
     </message>
     <message>
-        <location filename="detectThread.cpp" line="56"/>
+        <location filename="detectThread.cpp" line="55"/>
         <source>ImageSize unsuitable, Thread:Grab, camera:%1.lImageSize = %2,myImage byteCount = %3</source>
         <translation>图像尺寸不合适（检测线程），相机%1,图像大小%2，图像内存大小%3</translation>
     </message>
     <message>
-        <location filename="detectThread.cpp" line="300"/>
-        <location filename="detectThread.cpp" line="316"/>
         <source>SaveImageByTime\</source>
-        <translation>按时间保存图像\\</translation>
+        <translation type="obsolete">按时间保存图像\\</translation>
     </message>
     <message>
-        <location filename="detectThread.cpp" line="301"/>
         <source>normal image\</source>
-        <translation>正常图像\\</translation>
+        <translation type="obsolete">正常图像\\</translation>
     </message>
     <message>
-        <location filename="detectThread.cpp" line="301"/>
-        <location filename="detectThread.cpp" line="317"/>
         <source>\camera%1</source>
-        <translation>\\相机%1</translation>
+        <translation type="obsolete">\\相机%1</translation>
     </message>
     <message>
         <source>Failure in create Path!</source>
         <translation type="obsolete">创建路径失败!</translation>
     </message>
     <message>
-        <location filename="detectThread.cpp" line="317"/>
         <source>stress image\</source>
-        <translation>应力图像\\</translation>
+        <translation type="obsolete">应力图像\\</translation>
     </message>
 </context>
 <context>
@@ -984,7 +973,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="widget_image.cpp" line="87"/>
+        <location filename="widget_image.cpp" line="86"/>
         <source>Image</source>
         <translation>图像界面</translation>
     </message>
@@ -1001,22 +990,37 @@
         <translation type="obsolete">已经是第一张！</translation>
     </message>
     <message>
-        <location filename="widget_image.cpp" line="310"/>
+        <location filename="widget_image.cpp" line="177"/>
+        <source>Infomation</source>
+        <translation type="unfinished">系统信息</translation>
+    </message>
+    <message>
+        <location filename="widget_image.cpp" line="177"/>
+        <source>Please Stop Detection First!</source>
+        <translation type="unfinished">请停止检测！</translation>
+    </message>
+    <message>
+        <location filename="widget_image.cpp" line="185"/>
+        <source>Error</source>
+        <translation type="unfinished">错误</translation>
+    </message>
+    <message>
+        <location filename="widget_image.cpp" line="321"/>
         <source>Abnormal in close model </source>
         <translation>关闭算法设置时异常</translation>
     </message>
     <message>
-        <location filename="widget_image.cpp" line="323"/>
+        <location filename="widget_image.cpp" line="334"/>
         <source>Image height:%1 not fit camera height:%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widget_image.cpp" line="328"/>
+        <location filename="widget_image.cpp" line="339"/>
         <source>Image Width:%1 not fit camera Width:%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widget_image.cpp" line="347"/>
+        <location filename="widget_image.cpp" line="358"/>
         <source>widget_alg size is too small width:%1 height:%2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1025,12 +1029,12 @@
         <translation type="obsolete">打开算法界面</translation>
     </message>
     <message>
-        <location filename="widget_image.cpp" line="355"/>
+        <location filename="widget_image.cpp" line="366"/>
         <source>Abnormal in set Model</source>
         <translation type="unfinished">setModle时异常</translation>
     </message>
     <message>
-        <location filename="widget_image.cpp" line="363"/>
+        <location filename="widget_image.cpp" line="374"/>
         <source>Abnormal in set Model </source>
         <translation>setModle时异常2</translation>
     </message>
@@ -1200,35 +1204,33 @@
         <translation type="obsolete">错误</translation>
     </message>
     <message>
-        <location filename="cerrorimagelist.cpp" line="115"/>
+        <location filename="cerrorimagelist.cpp" line="109"/>
         <source>CameraNo</source>
         <translation>相机号</translation>
     </message>
     <message>
-        <location filename="cerrorimagelist.cpp" line="115"/>
-        <location filename="widget_count.cpp" line="207"/>
-        <location filename="widget_count.cpp" line="220"/>
+        <location filename="cerrorimagelist.cpp" line="109"/>
         <source>Time</source>
         <translation>时间</translation>
     </message>
     <message>
-        <location filename="cerrorimagelist.cpp" line="115"/>
+        <location filename="cerrorimagelist.cpp" line="109"/>
         <source>ImageCount</source>
         <translation>图像号</translation>
     </message>
     <message>
-        <location filename="cerrorimagelist.cpp" line="115"/>
+        <location filename="cerrorimagelist.cpp" line="109"/>
         <source>ErrorType</source>
         <translation>缺陷类型</translation>
     </message>
     <message>
-        <location filename="cerrorimagelist.cpp" line="142"/>
+        <location filename="cerrorimagelist.cpp" line="136"/>
         <source>%1:%2:%3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="cerrorimagelist.cpp" line="143"/>
-        <location filename="cerrorimagelist.cpp" line="146"/>
+        <location filename="cerrorimagelist.cpp" line="137"/>
+        <location filename="cerrorimagelist.cpp" line="140"/>
         <source>%1</source>
         <translation></translation>
     </message>
@@ -1241,49 +1243,39 @@
         <translation type="obsolete">系统提示</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="198"/>
         <source>Type</source>
-        <translation type="unfinished">类型</translation>
+        <translation type="obsolete">类型</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="202"/>
-        <location filename="widget_count.cpp" line="228"/>
         <location filename="widget_Report.cpp" line="32"/>
         <source>Camera%1</source>
         <translation type="unfinished">相机%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="208"/>
         <source>Product Number</source>
         <oldsource>Checked Number</oldsource>
-        <translation type="unfinished">检测总数</translation>
+        <translation type="obsolete">检测总数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="209"/>
         <source>Reject Number</source>
         <oldsource>Failure Number</oldsource>
-        <translation type="unfinished">不合格总数</translation>
+        <translation type="obsolete">不合格总数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="221"/>
         <source>Body Number</source>
-        <translation type="unfinished">瓶身缺陷数</translation>
+        <translation type="obsolete">瓶身缺陷数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="222"/>
         <source>Mouth Number</source>
-        <translation type="unfinished">瓶口缺陷数</translation>
+        <translation type="obsolete">瓶口缺陷数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="223"/>
         <source>Buttom Number</source>
-        <translation type="unfinished">瓶底缺陷数</translation>
+        <translation type="obsolete">瓶底缺陷数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="199"/>
-        <location filename="widget_count.cpp" line="215"/>
         <source>Count</source>
-        <translation type="unfinished">合计</translation>
+        <translation type="obsolete">合计</translation>
     </message>
     <message>
         <source>ReleaseUserManage</source>
@@ -1334,7 +1326,7 @@
         <translation type="obsolete">初始化检测！</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="199"/>
+        <location filename="reviewer.cpp" line="171"/>
         <source>Glass Bottle Detect System</source>
         <translation>玻璃瓶在线检测系统</translation>
     </message>
@@ -1342,55 +1334,66 @@
 <context>
     <name>Reviewer</name>
     <message>
-        <location filename="reviewer.cpp" line="182"/>
+        <location filename="reviewer.cpp" line="154"/>
         <source>Good</source>
         <translation type="unfinished">合格</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="391"/>
+        <location filename="reviewer.cpp" line="349"/>
         <source>DeviceName:%1</source>
         <translation type="unfinished">设备名称：%1</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="391"/>
+        <location filename="reviewer.cpp" line="349"/>
         <source>ErrorCode:%2</source>
         <translation type="unfinished">错误代码：%2</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="392"/>
+        <location filename="reviewer.cpp" line="350"/>
         <source>ErrorDescription:%3</source>
         <translation type="unfinished">错误描述：%3</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="392"/>
+        <location filename="reviewer.cpp" line="350"/>
         <source>ErrorRemark:%4
 </source>
         <translation type="unfinished">错误描述：%4</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="393"/>
-        <location filename="reviewer.cpp" line="559"/>
+        <location filename="reviewer.cpp" line="351"/>
+        <location filename="reviewer.cpp" line="522"/>
         <source>Error</source>
         <translation type="unfinished">错误</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="559"/>
+        <location filename="reviewer.cpp" line="480"/>
+        <source>Are you sure to clear?</source>
+        <translation type="unfinished">是否确定计数清零？</translation>
+    </message>
+    <message>
+        <location filename="reviewer.cpp" line="522"/>
         <source>No Model,Please Load Model!</source>
         <translation type="unfinished">当前没有模板，请先选择模版！</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="563"/>
+        <location filename="reviewer.cpp" line="526"/>
         <source>Stop</source>
         <translation type="unfinished">停止检测</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="574"/>
+        <location filename="reviewer.cpp" line="535"/>
         <source>Start</source>
         <translation type="unfinished">开始检测</translation>
     </message>
     <message>
+        <location filename="reviewer.cpp" line="564"/>
+        <source>Error in Close ModelDlg--OnExit</source>
+        <translation type="unfinished">关闭算法设置时出错--退出系统</translation>
+    </message>
+    <message>
+        <location filename="reviewer.cpp" line="480"/>
         <source>Exit</source>
-        <translation type="obsolete">退出</translation>
+        <translation type="unfinished">退出</translation>
     </message>
     <message>
         <source>Are you sure to exit?</source>
@@ -1409,12 +1412,12 @@
         <translation type="obsolete">请停止检测！</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="617"/>
+        <location filename="reviewer.cpp" line="584"/>
         <source>----load model error----</source>
         <translation type="unfinished">加载模板错误</translation>
     </message>
     <message>
-        <location filename="reviewer.cpp" line="635"/>
+        <location filename="reviewer.cpp" line="602"/>
         <source>----camera%1 load model error----</source>
         <translation type="unfinished">相机%1加载模板错误</translation>
     </message>
@@ -2010,7 +2013,7 @@ please input again!</source>
         <translation type="unfinished">缺陷10</translation>
     </message>
     <message>
-        <location filename="widget_Report.cpp" line="174"/>
+        <location filename="widget_Report.cpp" line="166"/>
         <source>Other:</source>
         <oldsource>Other</oldsource>
         <translation type="unfinished">其他:</translation>
@@ -2950,27 +2953,26 @@ Please check the camera and restart the software!</source>
 <context>
     <name>Widget_Count</name>
     <message>
-        <location filename="widget_count.cpp" line="37"/>
+        <location filename="widget_count.cpp" line="16"/>
         <source>Count Table</source>
         <translation type="unfinished">统计报表</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="95"/>
         <source>Count Info</source>
-        <translation type="unfinished">统计信息</translation>
+        <translation type="obsolete">统计信息</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="97"/>
+        <location filename="widget_count.cpp" line="37"/>
         <source>History</source>
         <translation type="unfinished">历史信息</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="100"/>
+        <location filename="widget_count.cpp" line="39"/>
         <source>Save Set</source>
         <translation type="unfinished">保存设置</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="102"/>
+        <location filename="widget_count.cpp" line="41"/>
         <source>Shift Set</source>
         <translation type="unfinished">班次设置</translation>
     </message>
@@ -2979,13 +2981,8 @@ Please check the camera and restart the software!</source>
         <translation type="obsolete">类型</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="255"/>
-        <location filename="widget_count.cpp" line="400"/>
-        <location filename="widget_count.cpp" line="830"/>
-        <location filename="widget_count.cpp" line="1007"/>
-        <location filename="widget_count.cpp" line="1893"/>
         <source>Count</source>
-        <translation type="unfinished">合计</translation>
+        <translation type="obsolete">合计</translation>
     </message>
     <message>
         <source>Time</source>
@@ -2996,193 +2993,165 @@ Please check the camera and restart the software!</source>
         <translation type="obsolete">检测总数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1662"/>
         <source>Reject Number</source>
         <oldsource>Failure Number</oldsource>
-        <translation type="unfinished">不合格总数</translation>
+        <translation type="obsolete">不合格总数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="439"/>
-        <location filename="widget_count.cpp" line="519"/>
-        <location filename="widget_count.cpp" line="525"/>
+        <location filename="widget_count.cpp" line="161"/>
+        <location filename="widget_count.cpp" line="241"/>
+        <location filename="widget_count.cpp" line="246"/>
         <source>Information</source>
         <translation type="unfinished">信息</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="439"/>
-        <location filename="widget_count.cpp" line="519"/>
+        <location filename="widget_count.cpp" line="161"/>
+        <location filename="widget_count.cpp" line="241"/>
         <source>No record in select date!</source>
         <translation type="unfinished">选择日期没有报表！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="449"/>
+        <location filename="widget_count.cpp" line="171"/>
         <source>Fail in Open Record File </source>
         <translation type="unfinished">打开报表失败</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="525"/>
+        <location filename="widget_count.cpp" line="246"/>
         <source>Deleting [%1] fail!</source>
         <translation type="unfinished">删除[%1]失败！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="532"/>
         <source>Exit</source>
-        <translation type="unfinished">退出</translation>
+        <translation type="obsolete">退出</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="533"/>
         <source>Are you sure to clear?</source>
-        <translation type="unfinished">是否确定计数清零？</translation>
+        <translation type="obsolete">是否确定计数清零？</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1624"/>
         <source>Shift</source>
-        <translation type="unfinished">班次设置</translation>
+        <translation type="obsolete">班次设置</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1624"/>
         <source>Shift Settting Succeed!</source>
-        <translation type="unfinished">班次参数设置成功！</translation>
+        <translation type="obsolete">班次参数设置成功！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1669"/>
+        <location filename="widget_count.cpp" line="550"/>
         <source>Set zero!</source>
         <translation type="unfinished">清零！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="586"/>
-        <location filename="widget_count.cpp" line="740"/>
-        <location filename="widget_count.cpp" line="949"/>
-        <location filename="widget_count.cpp" line="1832"/>
+        <location filename="widget_count.cpp" line="337"/>
         <source>Create Count File Failure!</source>
         <translation type="unfinished">创建统计报表失败!</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="569"/>
         <source>Path not Exist,Create it!</source>
-        <translation type="unfinished">路径不存在，准备创建！</translation>
+        <translation type="obsolete">路径不存在，准备创建！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="581"/>
         <source>File not Exist,Create it!</source>
-        <translation type="unfinished">文件不存在，准备创建！</translation>
+        <translation type="obsolete">文件不存在，准备创建！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="714"/>
-        <location filename="widget_count.cpp" line="927"/>
+        <location filename="widget_count.cpp" line="318"/>
         <source>SaveCountInfo!</source>
         <translation type="unfinished">保存统计信息！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="753"/>
-        <location filename="widget_count.cpp" line="962"/>
-        <location filename="widget_count.cpp" line="1845"/>
+        <location filename="widget_count.cpp" line="347"/>
         <source>Read Count File Failure!</source>
         <translation type="unfinished">读取统计报表失败!</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="780"/>
-        <location filename="widget_count.cpp" line="1000"/>
-        <location filename="widget_count.cpp" line="1861"/>
+        <location filename="widget_count.cpp" line="363"/>
         <source>Time:  %1:%2:%3</source>
         <translation type="unfinished">时间：%1:%2:%3</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="781"/>
-        <location filename="widget_count.cpp" line="1001"/>
-        <location filename="widget_count.cpp" line="1862"/>
+        <location filename="widget_count.cpp" line="364"/>
         <source>Product Number:  %1</source>
         <oldsource>Totle Number:  %1</oldsource>
         <translation type="unfinished">检测总数：%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="782"/>
-        <location filename="widget_count.cpp" line="1002"/>
-        <location filename="widget_count.cpp" line="1863"/>
+        <location filename="widget_count.cpp" line="365"/>
         <source>Reject Number:  %1</source>
         <oldsource>Failur Number:  %1</oldsource>
         <translation type="unfinished">不合格数：%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="788"/>
-        <location filename="widget_count.cpp" line="1004"/>
-        <location filename="widget_count.cpp" line="1865"/>
+        <location filename="widget_count.cpp" line="371"/>
         <source>Reject Rate:  %1%</source>
         <oldsource>Failur Rate:  %1%</oldsource>
         <translation type="unfinished">不合格率：%1%</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="820"/>
-        <location filename="widget_count.cpp" line="1883"/>
         <source>Reject Number of body:  %1</source>
         <oldsource>Reject Number of body:  %1%</oldsource>
-        <translation type="unfinished">瓶身剔废：%1</translation>
+        <translation type="obsolete">瓶身剔废：%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="821"/>
-        <location filename="widget_count.cpp" line="1884"/>
         <source>Reject Number of finish:  %1</source>
         <oldsource>Reject Number of finish:  %1%</oldsource>
-        <translation type="unfinished">瓶口剔废：%1</translation>
+        <translation type="obsolete">瓶口剔废：%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="822"/>
-        <location filename="widget_count.cpp" line="1885"/>
         <source>Reject Number of bottom:  %1</source>
         <oldsource>Reject Number of bottom:  %1%</oldsource>
-        <translation type="unfinished">瓶底剔废：%1</translation>
+        <translation type="obsolete">瓶底剔废：%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="829"/>
-        <location filename="widget_count.cpp" line="1006"/>
-        <location filename="widget_count.cpp" line="1892"/>
+        <source>The camera</source>
+        <translation type="obsolete">相机</translation>
+    </message>
+    <message>
+        <location filename="widget_count.cpp" line="386"/>
+        <source>the 0%1 time</source>
+        <translation type="unfinished">第0%1次</translation>
+    </message>
+    <message>
+        <location filename="widget_count.cpp" line="390"/>
+        <source>the %1 time</source>
+        <translation type="unfinished">第%1次</translation>
+    </message>
+    <message>
         <source>The statistical results</source>
-        <translation type="unfinished">统计结果</translation>
+        <translation type="obsolete">统计结果</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="836"/>
-        <location filename="widget_count.cpp" line="1013"/>
-        <location filename="widget_count.cpp" line="1899"/>
+        <location filename="widget_count.cpp" line="399"/>
         <source>Camera0%1</source>
         <translation type="unfinished">相机0%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="840"/>
-        <location filename="widget_count.cpp" line="1017"/>
-        <location filename="widget_count.cpp" line="1903"/>
+        <location filename="widget_count.cpp" line="403"/>
         <source>Camera%1</source>
         <translation type="unfinished">相机%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1058"/>
-        <location filename="widget_count.cpp" line="1949"/>
+        <location filename="widget_count.cpp" line="372"/>
         <source>Count:</source>
         <translation type="unfinished">合计：</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="910"/>
-        <location filename="widget_count.cpp" line="1080"/>
-        <location filename="widget_count.cpp" line="1966"/>
+        <location filename="widget_count.cpp" line="450"/>
         <source>Write Count File Failure!</source>
         <translation type="unfinished">写入统计报表失败!</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="917"/>
-        <location filename="widget_count.cpp" line="1087"/>
-        <location filename="widget_count.cpp" line="1973"/>
         <source>SaveCountInfoOver!</source>
-        <translation type="unfinished">保存统计信息结束！</translation>
+        <translation type="obsolete">保存统计信息结束！</translation>
     </message>
     <message>
         <source>SaveHourCountInfo!</source>
         <translation type="obsolete">保存小时缺陷统计信息！</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1230"/>
-        <location filename="widget_count.cpp" line="1254"/>
         <source>SaveCameraCountInfo!</source>
         <oldsource>SaveHourCountInfo!</oldsource>
-        <translation type="unfinished">保存每小时相机统计信息！</translation>
+        <translation type="obsolete">保存每小时相机统计信息！</translation>
     </message>
     <message>
         <source>Time£º %1:%2:%3</source>
@@ -3201,61 +3170,52 @@ Please check the camera and restart the software!</source>
         <translation type="obsolete">不合格率：</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1309"/>
         <source>InsertLastCountInfo!</source>
-        <translation type="unfinished">插入上一小时信息！</translation>
+        <translation type="obsolete">插入上一小时信息！</translation>
     </message>
     <message>
         <source>FreshHourInfoOver!</source>
         <translation type="obsolete">刷新小时统计信息!</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1437"/>
         <source>Time: %1:%2:%3</source>
         <oldsource>Time? %1:%2:%3</oldsource>
-        <translation type="unfinished">时间：%1:%2:%3</translation>
+        <translation type="obsolete">时间：%1:%2:%3</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1438"/>
         <source>The statistical results	</source>
-        <translation type="unfinished">统计结果</translation>
+        <translation type="obsolete">统计结果</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1441"/>
         <source>Camera%1	</source>
-        <translation type="unfinished">相机%1</translation>
+        <translation type="obsolete">相机%1</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1443"/>
         <source>Count
 </source>
-        <translation type="unfinished">合计</translation>
+        <translation type="obsolete">合计</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1474"/>
         <source>Count	</source>
-        <translation type="unfinished">合计</translation>
+        <translation type="obsolete">合计</translation>
     </message>
     <message>
         <source>Count		</source>
         <translation type="obsolete">合计</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1481"/>
         <source>Save statistics</source>
-        <translation type="unfinished">保存统计结果</translation>
+        <translation type="obsolete">保存统计结果</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1661"/>
         <source>Product Number</source>
         <oldsource>Total Number</oldsource>
-        <translation type="unfinished">检测总数</translation>
+        <translation type="obsolete">检测总数</translation>
     </message>
     <message>
-        <location filename="widget_count.cpp" line="1663"/>
         <source>Reject Rate</source>
         <oldsource>Failure Rate</oldsource>
-        <translation type="unfinished">不合格率</translation>
+        <translation type="obsolete">不合格率</translation>
     </message>
 </context>
 <context>
@@ -3276,14 +3236,12 @@ Please check the camera and restart the software!</source>
         <translation type="unfinished">晚班</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="396"/>
         <source>Failure Number</source>
-        <translation type="unfinished">剔废数量</translation>
+        <translation type="obsolete">剔废数量</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="602"/>
         <source>Failure Rate</source>
-        <translation type="unfinished">剔废率</translation>
+        <translation type="obsolete">剔废率</translation>
     </message>
     <message>
         <location filename="Widget_CountPlot.ui" line="403"/>
@@ -3301,10 +3259,9 @@ Please check the camera and restart the software!</source>
         <translation type="unfinished">查询一小时数据</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="121"/>
         <source>Search Set</source>
         <oldsource>Shift Search Set</oldsource>
-        <translation type="unfinished">班次查询设置</translation>
+        <translation type="obsolete">班次查询设置</translation>
     </message>
     <message>
         <location filename="Widget_CountPlot.ui" line="144"/>
@@ -3359,207 +3316,161 @@ Please check the camera and restart the software!</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="119"/>
         <source>Select Shift</source>
-        <translation type="unfinished">选择查询班次</translation>
+        <translation type="obsolete">选择查询班次</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="120"/>
         <source>Select Table</source>
-        <translation type="unfinished">选择查询表</translation>
+        <translation type="obsolete">选择查询表</translation>
     </message>
     <message>
         <location filename="Widget_CountPlot.ui" line="379"/>
-        <location filename="Widget_CountPlot.cpp" line="122"/>
         <source>Shift Defect Count Plot</source>
         <oldsource>Defect Count Plot</oldsource>
         <translation type="unfinished">班次缺陷统计图</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="163"/>
         <source>Error1</source>
-        <translation type="unfinished">缺陷1</translation>
+        <translation type="obsolete">缺陷1</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="164"/>
         <source>Error2</source>
-        <translation type="unfinished">缺陷2</translation>
+        <translation type="obsolete">缺陷2</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="165"/>
         <source>Error3</source>
-        <translation type="unfinished">缺陷3</translation>
+        <translation type="obsolete">缺陷3</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="166"/>
         <source>Error4</source>
-        <translation type="unfinished">缺陷4</translation>
+        <translation type="obsolete">缺陷4</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="167"/>
         <source>Error5</source>
-        <translation type="unfinished">缺陷5</translation>
+        <translation type="obsolete">缺陷5</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="168"/>
         <source>Error6</source>
-        <translation type="unfinished">缺陷6</translation>
+        <translation type="obsolete">缺陷6</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="169"/>
         <source>Error7</source>
-        <translation type="unfinished">缺陷7</translation>
+        <translation type="obsolete">缺陷7</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="170"/>
         <source>Error8</source>
-        <translation type="unfinished">缺陷8</translation>
+        <translation type="obsolete">缺陷8</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="171"/>
         <source>Error9</source>
-        <translation type="unfinished">缺陷9</translation>
+        <translation type="obsolete">缺陷9</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="172"/>
         <source>Error10</source>
-        <translation type="unfinished">缺陷10</translation>
+        <translation type="obsolete">缺陷10</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="188"/>
-        <location filename="Widget_CountPlot.cpp" line="335"/>
         <source>Save Table</source>
-        <translation type="unfinished">保存图表</translation>
+        <translation type="obsolete">保存图表</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="224"/>
         <source>shift1</source>
-        <translation type="unfinished">早班</translation>
+        <translation type="obsolete">早班</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="230"/>
         <source>shift2</source>
-        <translation type="unfinished">中班</translation>
+        <translation type="obsolete">中班</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="237"/>
         <source>shift3</source>
-        <translation type="unfinished">晚班</translation>
+        <translation type="obsolete">晚班</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="244"/>
         <source>AllShift</source>
-        <translation type="unfinished">总班次</translation>
+        <translation type="obsolete">总班次</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="278"/>
         <source>Shift Defect Count Plot  </source>
-        <translation type="unfinished">班次缺陷统计图  </translation>
+        <translation type="obsolete">班次缺陷统计图  </translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="337"/>
         <source>Images (*.pdf *.bmp *.png *.jpg)</source>
-        <translation type="unfinished">保存格式 (*.pdf *.bmp *.png *.jpg)</translation>
+        <translation type="obsolete">保存格式 (*.pdf *.bmp *.png *.jpg)</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="392"/>
         <source>All Detect Number</source>
-        <translation type="unfinished">检测总数</translation>
+        <translation type="obsolete">检测总数</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="517"/>
-        <location filename="Widget_CountPlot.cpp" line="709"/>
         <source>Time(Hour)</source>
         <oldsource>Time(hour)</oldsource>
-        <translation type="unfinished">时间（时）</translation>
+        <translation type="obsolete">时间（时）</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="534"/>
-        <location filename="Widget_CountPlot.cpp" line="727"/>
         <source>Search Error</source>
-        <translation type="unfinished">查询错误</translation>
+        <translation type="obsolete">查询错误</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="534"/>
-        <location filename="Widget_CountPlot.cpp" line="727"/>
         <source>Search history Data Error!</source>
-        <translation type="unfinished">查询历史数据出错！</translation>
+        <translation type="obsolete">查询历史数据出错！</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="566"/>
         <source>Failure Number Table(Ps)</source>
         <oldsource>Failure Number table(p)</oldsource>
-        <translation type="unfinished">剔废数量统计表（个）</translation>
+        <translation type="obsolete">剔废数量统计表（个）</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="747"/>
         <source>Failure Rate Table(%)</source>
-        <translation type="unfinished">剔废率统计表（%）</translation>
+        <translation type="obsolete">剔废率统计表（%）</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="785"/>
         <source>Single Shift All Detect Number</source>
-        <translation type="unfinished">单个班次检测总数</translation>
+        <translation type="obsolete">单个班次检测总数</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="789"/>
         <source>Single Shift Failure Number</source>
-        <translation type="unfinished">单个班次剔废总数</translation>
+        <translation type="obsolete">单个班次剔废总数</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="811"/>
-        <location filename="Widget_CountPlot.cpp" line="933"/>
         <source>Shift1</source>
-        <translation type="unfinished">早班</translation>
+        <translation type="obsolete">早班</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="811"/>
-        <location filename="Widget_CountPlot.cpp" line="933"/>
         <source>Shift2</source>
-        <translation type="unfinished">中班</translation>
+        <translation type="obsolete">中班</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="811"/>
-        <location filename="Widget_CountPlot.cpp" line="933"/>
         <source>Shift3</source>
-        <translation type="unfinished">晚班</translation>
+        <translation type="obsolete">晚班</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="826"/>
-        <location filename="Widget_CountPlot.cpp" line="948"/>
         <source>Shift(1,2,3)</source>
         <oldsource>Shift</oldsource>
-        <translation type="unfinished">班次（早，中，晚）</translation>
+        <translation type="obsolete">班次（早，中，晚）</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="890"/>
         <source>Shift Failure Number Table(Ps)</source>
-        <translation type="unfinished">总班次剔废数量统计表（个）</translation>
+        <translation type="obsolete">总班次剔废数量统计表（个）</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="924"/>
         <source>Single Shift Failure Rate</source>
-        <translation type="unfinished">单个班次剔废率</translation>
+        <translation type="obsolete">单个班次剔废率</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="1005"/>
         <source>Shift Failure Rate Table(%)</source>
-        <translation type="unfinished">总班次剔废率统计表（%）</translation>
+        <translation type="obsolete">总班次剔废率统计表（%）</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="1033"/>
         <source>Shift Failure count</source>
-        <translation type="unfinished">班次缺陷统计图</translation>
+        <translation type="obsolete">班次缺陷统计图</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="1033"/>
         <source>Search Date error!</source>
-        <translation type="unfinished">数据搜索出错！</translation>
+        <translation type="obsolete">数据搜索出错！</translation>
     </message>
     <message>
-        <location filename="Widget_CountPlot.cpp" line="1179"/>
         <source>Other:</source>
-        <translation type="unfinished">其他:</translation>
+        <translation type="obsolete">其他:</translation>
     </message>
 </context>
 <context>
@@ -3810,9 +3721,8 @@ Please check the camera and restart the software!</source>
         <translation type="unfinished">查询</translation>
     </message>
     <message>
-        <location filename="Report.ui" line="197"/>
         <source>Export</source>
-        <translation type="unfinished">导出</translation>
+        <translation type="obsolete">导出</translation>
     </message>
 </context>
 <context>

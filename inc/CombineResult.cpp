@@ -42,24 +42,24 @@ int CCombineRlt::AddResult(int iSignalNum,int CameraNum,int tmpResult)
 	{
 	return -1;
 	}*/
-	int iTempSignalNum;
+	/*int iTempSignalNum;
 	if (m_iLatestImageNo - iSignalNum>100)
 	{
-		iTempSignalNum = iSignalNum+256;
+	iTempSignalNum = iSignalNum+256;
 	}
 	else
 	{
-		iTempSignalNum = iSignalNum;
+	iTempSignalNum = iSignalNum;
 	}
 
 	if (0 < (iTempSignalNum-m_iLatestImageNo)&&(iTempSignalNum-m_iLatestImageNo)<100)
 	{
-		for (int i =1 ;i <= iTempSignalNum-m_iLatestImageNo;i++)
-		{
-			RemoveOneResult((i+m_iLatestImageNo)%256);
-		}
-		m_iLatestImageNo = iTempSignalNum%256;
+	for (int i =1 ;i <= iTempSignalNum-m_iLatestImageNo;i++)
+	{
+	RemoveOneResult((i+m_iLatestImageNo)%256);
 	}
+	m_iLatestImageNo = iTempSignalNum%256;
+	}*/
 
 	m_Rlts[iSignalNum].b_Rlts[CameraNum] = tmpResult;
 	m_Rlts[iSignalNum].b_Checked[CameraNum] = true;
@@ -73,7 +73,7 @@ int CCombineRlt::AddResult(int iSignalNum,int CameraNum,int tmpResult)
 bool CCombineRlt::ConbineResult(int iSignalNum,int CameraCount,int &bCombineRlt)
 {
 	bool bRight = true;
-	for (int i = 0 ; i<CAMERA_MAX_COUNT;i++)
+	for (int i = 0 ; i<CameraCount;i++)
 	{
 		if (!m_Rlts[iSignalNum].b_Checked[i]&&b_CombinCamera[i])
 		{
@@ -93,7 +93,7 @@ void CCombineRlt::RemovAllResult()
 	for(int i = 0; i < 256; i++)
 	{
 		m_Rlts[i].iResult = 0;
-		m_Rlts[i].bSentToIOCard = true;
+		m_Rlts[i].bSentToIOCard = false;
 		for(int j = 0; j<CAMERA_MAX_COUNT; j++)
 		{
 			if (b_CombinCamera[j])

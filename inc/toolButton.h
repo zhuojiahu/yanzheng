@@ -29,7 +29,6 @@ public:
 	bool mouse_over; //鼠标是否移过
 	bool mouse_press; //鼠标是否按下
 	int btnStyle;//样式，1为标题栏，2为设置栏
-	bool bStatus;
 };
 
 #endif //TOOlBUTTON_H

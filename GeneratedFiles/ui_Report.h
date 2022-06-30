@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Report.ui'
 **
-** Created: Tue Jun 21 16:59:46 2022
+** Created: Fri Jun 24 17:22:41 2022
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -42,7 +42,6 @@ public:
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_check;
     QSpacerItem *horizontalSpacer_2;
-    QPushButton *Btn_Export;
     DHBaseWidget *widget;
     QHBoxLayout *horizontalLayout_3;
     QWidget *widget_pie;
@@ -146,22 +145,6 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
-        Btn_Export = new QPushButton(widget_2);
-        Btn_Export->setObjectName(QString::fromUtf8("Btn_Export"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(Btn_Export->sizePolicy().hasHeightForWidth());
-        Btn_Export->setSizePolicy(sizePolicy);
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
-        font3.setPointSize(12);
-        font3.setBold(false);
-        font3.setWeight(50);
-        Btn_Export->setFont(font3);
-
-        horizontalLayout_2->addWidget(Btn_Export);
-
 
         verticalLayout_4->addLayout(horizontalLayout_2);
 
@@ -176,9 +159,9 @@ public:
         horizontalLayout_3->setContentsMargins(0, 25, 0, 0);
         widget_pie = new QWidget(widget);
         widget_pie->setObjectName(QString::fromUtf8("widget_pie"));
-        QFont font4;
-        font4.setPointSize(9);
-        widget_pie->setFont(font4);
+        QFont font3;
+        font3.setPointSize(9);
+        widget_pie->setFont(font3);
 
         horizontalLayout_3->addWidget(widget_pie);
 
@@ -200,7 +183,6 @@ public:
     {
         widget_Report->setWindowTitle(QApplication::translate("widget_Report", "Form", 0, QApplication::UnicodeUTF8));
         pushButton_check->setText(QApplication::translate("widget_Report", "SHOW", 0, QApplication::UnicodeUTF8));
-        Btn_Export->setText(QApplication::translate("widget_Report", "Export", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

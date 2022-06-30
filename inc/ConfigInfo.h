@@ -134,7 +134,7 @@ typedef struct _realCamInfo
 	int m_iGrabImageCount;			//相机拍照张数[3/14/2011 lly]::njc拍照总数，包括误触发
 	int m_iGrabTriggerSignalCount;	//相机触发信号个数[3/22/2011 lly]::njc触发拍照总数，不包括误触发
 	int m_iLastTriggerSignalCount;	//相机上一次触发时，信号的个数[3/22/2011 lly]
-	int m_iImageIdxLast[2];			// 图像号，用于判断误触发 [12/19/2010 zhaodt]
+	volatile int m_iImageIdxLast[2];			// 图像号，用于判断误触发 [12/19/2010 zhaodt]
 	QMutex m_mutexmShownImage;					
 	QMutex m_mutexmRealImage;					
 
@@ -280,7 +280,7 @@ typedef struct _SystemInfo
 	int nLoginHoldTime;	//0:不统计，1：按时间统计，2：按个数统计	
 	int m_iIsTrackStatistics;	//0:不统计，1：按时间统计，2：按个数统计	
 	int m_iTrackTime;
-	int m_iTrackNumber;
+	volatile int m_iTrackNumber;
 	int m_iTrackAlertRateMax[ERRORTYPE_MAX_COUNT];//0为总，其他对应缺陷类型
 	int m_iTrackAlertRateMin[ERRORTYPE_MAX_COUNT];//0为总，其他对应缺陷类型
 //	int m_iIsTrackErrorType;	
@@ -387,13 +387,13 @@ typedef struct _RunningInfo
 	int m_iLastIOCard1IN0;
 	int m_iLastIOCard2IN0;
 	int m_iPermission;//权限
-	int m_checkedNum;
+	volatile int m_checkedNum;
 	int m_passNum;
 	int m_failureNum;
 	int m_checkedNum2;
 	int m_passNum2;
 	int m_failureNum2;
-	int m_failureNumFromIOcard;
+	volatile int m_failureNumFromIOcard;
 	int m_kickoutNumber;
 
 	int m_iKickMode;//踢废模式0:连续踢 1:隔瓶踢	2:持续好 3：正常踢

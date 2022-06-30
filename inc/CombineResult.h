@@ -7,7 +7,7 @@ struct sResult {
 	int iResult;						//当前机器号的综合结果
 	bool bSentToIOCard;						//是否已将结果发送到接口卡
 	int b_Rlts[CAMERA_MAX_COUNT];		//存储结果的数组
-	bool b_Checked[CAMERA_MAX_COUNT];	//已经输入的结果的个数
+	volatile bool b_Checked[CAMERA_MAX_COUNT];	//已经输入的结果的个数
 	s_ErrorPara *sErrorPara[CAMERA_MAX_COUNT];
  	sResult()
  	{	

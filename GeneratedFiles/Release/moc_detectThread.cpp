@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'detectThread.h'
 **
-** Created: Wed Jun 22 14:40:17 2022
+** Created: Mon Jun 27 09:48:40 2022
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,26 +23,23 @@ static const uint qt_meta_data_DetectThread[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       4,       // signalCount
+       3,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-      48,   14,   13,   13, 0x05,
-     120,   92,   13,   13, 0x05,
-     159,   13,   13,   13, 0x05,
-     188,  180,   13,   13, 0x05,
+      42,   14,   13,   13, 0x05,
+      81,   13,   13,   13, 0x05,
+     110,  102,   13,   13, 0x05,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_DetectThread[] = {
-    "DetectThread\0\0nCamNo,nImgNo,dCostTime,tmpResult\0"
-    "signals_updateActiveImg(int,int,double,int)\0"
-    "nCamSN,nSignalNo,nErrorType\0"
+    "DetectThread\0\0nCamSN,nSignalNo,nErrorType\0"
     "signals_AddErrorTableView(int,int,int)\0"
     "signals_SaveReport()\0,,,,,,,\0"
     "signals_updateImage(QImage*,QString,QString,QString,QString,QString,QL"
@@ -55,10 +52,9 @@ void DetectThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         Q_ASSERT(staticMetaObject.cast(_o));
         DetectThread *_t = static_cast<DetectThread *>(_o);
         switch (_id) {
-        case 0: _t->signals_updateActiveImg((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
-        case 1: _t->signals_AddErrorTableView((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
-        case 2: _t->signals_SaveReport(); break;
-        case 3: _t->signals_updateImage((*reinterpret_cast< QImage*(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6])),(*reinterpret_cast< QList<QRect>(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
+        case 0: _t->signals_AddErrorTableView((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
+        case 1: _t->signals_SaveReport(); break;
+        case 2: _t->signals_updateImage((*reinterpret_cast< QImage*(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6])),(*reinterpret_cast< QList<QRect>(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
         default: ;
         }
     }
@@ -96,37 +92,30 @@ int DetectThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }
 
 // SIGNAL 0
-void DetectThread::signals_updateActiveImg(int _t1, int _t2, double _t3, int _t4)
+void DetectThread::signals_AddErrorTableView(int _t1, int _t2, int _t3)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void DetectThread::signals_AddErrorTableView(int _t1, int _t2, int _t3)
+void DetectThread::signals_SaveReport()
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    QMetaObject::activate(this, &staticMetaObject, 1, 0);
 }
 
 // SIGNAL 2
-void DetectThread::signals_SaveReport()
-{
-    QMetaObject::activate(this, &staticMetaObject, 2, 0);
-}
-
-// SIGNAL 3
 void DetectThread::signals_updateImage(QImage * _t1, QString _t2, QString _t3, QString _t4, QString _t5, QString _t6, QList<QRect> _t7, int _t8)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)), const_cast<void*>(reinterpret_cast<const void*>(&_t6)), const_cast<void*>(reinterpret_cast<const void*>(&_t7)), const_cast<void*>(reinterpret_cast<const void*>(&_t8)) };
-    QMetaObject::activate(this, &staticMetaObject, 3, _a);
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_END_MOC_NAMESPACE

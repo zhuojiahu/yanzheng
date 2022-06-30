@@ -13,7 +13,7 @@ bool DataBase::createConnection()
 	//QStringList strlist = QSqlDatabase::drivers();
 	//以后就可以用"sqlite1"与数据库进行连接了
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "sqlite1");
-	db.setDatabaseName(".//Report.db");
+	db.setDatabaseName(".//Report1.db");
 	if( !db.open())
 	{
 		return false;

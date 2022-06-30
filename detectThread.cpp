@@ -48,7 +48,7 @@ void DetectThread::ProcessHanlde(int Camera)
 			memcpy(pMainFrm->m_sRealCamInfo[iCamera].m_pRealImage->bits(), DetectElement.ImageNormal->SourceImage->bits(), pMainFrm->m_sRealCamInfo[iCamera].m_iImageWidth * pMainFrm->m_sRealCamInfo[iCamera].m_iImageHeight);
 		}
 		//裁剪原始图片
-		pMainFrm->m_mutexmCarve[iCamera].lock();
+		
 		long lImageSize = pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageWidth * pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageHeight;
 		if (lImageSize != DetectElement.ImageNormal->myImage->byteCount())
 		{
@@ -58,7 +58,6 @@ void DetectThread::ProcessHanlde(int Camera)
 			DetectElement.ImageNormal->myImage = NULL;
 			DetectElement.ImageNormal->SourceImage = NULL;
 			delete DetectElement.ImageNormal;
-			pMainFrm->m_mutexmCarve[iCamera].unlock();
 			return;
 		}
 		pMainFrm->CarveImage(pMainFrm->m_sRealCamInfo[iCamera].m_pRealImage->bits(),pMainFrm->m_sCarvedCamInfo[iCamera].m_pGrabTemp,\
@@ -68,8 +67,6 @@ void DetectThread::ProcessHanlde(int Camera)
 		memcpy(DetectElement.ImageNormal->myImage->bits(), pMainFrm->m_sCarvedCamInfo[iCamera].m_pGrabTemp, \
 			pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageWidth*pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageHeight);
 		//进入检测环节
-		pMainFrm->m_mutexmCarve[iCamera].unlock();
-		
 		DetectNormal(DetectElement.ImageNormal,DetectElement.iType);
 		if (pMainFrm->nQueue[iCamera].InitID == DetectElement.ImageNormal->initID)
 		{ 
@@ -95,6 +92,7 @@ void DetectThread::DetectNormal(CGrabElement *pElement,int nTmp)
 	iMaxErrorType = 0;
 	iMaxErrorArea = 0;
 	pElement->cErrorRectList.clear();
+	//pMainFrm->Logfile.write(QString("GrabCallBack:camera%1-count%2").arg(iCamera).arg(pElement->nSignalNo),OperationLog);
 	//rotateImage(pElement);
 	if (pMainFrm->m_sRunningInfo.m_bCheck && pMainFrm->m_sRunningInfo.m_bIsCheck[iCamera])
 	{
@@ -210,7 +208,6 @@ bool DetectThread::getCheckResult(CGrabElement *pElement)
 	GetModelDotData(pElement);
 	if (pAlgCheckResult->nSizeError >0) //有错误并且此相机未关闭检测
 	{
-		//连续剔瓶统计
 		bCheckResult[iCamera] = true;
 		pElement->cErrorParaList.clear(); //先清空
 
@@ -229,8 +226,6 @@ bool DetectThread::getCheckResult(CGrabElement *pElement)
 				iMaxErrorType = pMainFrm->m_sErrorInfo.m_iErrorTypeCount+1;
 				sErrorPara.nErrorType = pMainFrm->m_sErrorInfo.m_iErrorTypeCount+1;
 			}
-			//	找不到原点不踢废
-			
 			if(sErrorPara.nErrorType==39)
 			{
 				bCheckResult[iCamera] = true;
@@ -240,37 +235,36 @@ bool DetectThread::getCheckResult(CGrabElement *pElement)
 			{
 				pElement->cErrorRectList.append(rect);
 				pElement->cErrorParaList.append(sErrorPara);
-				//emit signals_upDateCamera(iCamera,1 );
 			}
+			pMainFrm->m_sErrorInfo.i_countErrorType[iCamera+1][pElement->nSignalNo] = sErrorPara.nErrorType;
 			pMainFrm->m_cCombine.AddError(pElement->nSignalNo,iCamera,sErrorPara);
 		}	
-
 		iErrorType = iMaxErrorType;
 		pElement->nCheckRet = iErrorType;
 	}
 	else//没有错误加入
 	{
-		//emit signals_upDateCamera(iCamera,0);
 		s_ErrorPara sErrorPara;
 		sErrorPara.nArea = 0;
 		sErrorPara.nErrorType = 0;
+		pMainFrm->m_sErrorInfo.i_countErrorType[iCamera+1][pElement->nSignalNo] = 0;
 		pMainFrm->m_cCombine.AddError(pElement->nSignalNo,iCamera,sErrorPara);
 	}
 	return true;
 }
 void DetectThread::CountDefectIOCard(int nSignalNo,int tmpResult)
 {
-	int comResult = -1;//综合后的结果
+	int comResult = 0;//综合后的结果
+	pMainFrm->mutexElement.lock();
 	pMainFrm->m_cCombine.AddResult(nSignalNo,iCamera,tmpResult);
-	if (pMainFrm->m_cCombine.ConbineResult(nSignalNo,0,comResult))//图像都拍完后结果综合
+	if (pMainFrm->m_cCombine.ConbineResult(nSignalNo,pMainFrm->m_sSystemInfo.iCamCount,comResult))//图像都拍完后结果综合
 	{
-		pMainFrm->m_cCombine.SetReject(nSignalNo);
-		pMainFrm->m_cCombine.RemoveOneResult(nSignalNo);
 		pMainFrm->m_sRunningInfo.m_checkedNum++;
-		if(bCheckResult[iCamera])
+		if(comResult)
 		{
 			pMainFrm->m_sRunningInfo.m_failureNumFromIOcard++;
 		}
+		pMainFrm->m_cCombine.RemoveOneResult(nSignalNo);
 		int iErrorCamera = pMainFrm->m_cCombine.ErrorCamera(nSignalNo);
 		s_ErrorPara sComErrorpara = pMainFrm->m_cCombine.ConbineError(nSignalNo);
 		if (pMainFrm->m_sRunningInfo.m_cErrorTypeInfo[iErrorCamera].ErrorTypeJudge(sComErrorpara.nErrorType))
@@ -282,12 +276,14 @@ void DetectThread::CountDefectIOCard(int nSignalNo,int tmpResult)
 			pMainFrm->m_sRunningInfo.m_cErrorTypeInfo[iErrorCamera].iErrorCountByType[0]+=1;
 			pMainFrm->m_sRunningInfo.m_iErrorTypeCount[0] +=1;
 		}
-		if(++pMainFrm->m_sSystemInfo.m_iTrackNumber == pMainFrm->widget_carveSetting->image_widget->NCamCount)
+		++pMainFrm->m_sSystemInfo.m_iTrackNumber;
+		if(pMainFrm->m_sSystemInfo.m_iTrackNumber == pMainFrm->NCamCount)
 		{
 			//数据收集齐全，发送到报表做统计
 			emit signals_SaveReport();
 		}
 	}
+	pMainFrm->mutexElement.unlock();
 }
 
 //将缺陷图像加入错误链表
@@ -327,7 +323,7 @@ void DetectThread::upDateState( QImage* myImage, int signalNo,double costTime, i
 	QString result = pMainFrm->m_sErrorInfo.m_vstrErrorType.at(iErrorType);
 	QString mouldID = QString::number(nMouldID);
 
-	emit signals_updateActiveImg(iCamera,signalNo,costTime,iErrorType);//更新剪切的图像显示
+	//emit signals_updateActiveImg(iCamera,signalNo,costTime,iErrorType);//更新剪切的图像显示
 	emit signals_updateImage(myImage, camera, imageSN, time, result, mouldID, listErrorRectList, ImageCount);
 }
 

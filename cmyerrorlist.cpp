@@ -6,21 +6,18 @@ CMyErrorList::CMyErrorList()
 
 	vColorTable.clear();
 	for (int i = 0; i < 256; i++)  
-	{  
+	{
 		vColorTable.append(qRgb(i, i, i)); 
-	} 
-
+	}
 }
 
 CMyErrorList::~CMyErrorList()
 {
 	releaseElement();
-
 }
 void CMyErrorList::initErrorList(int nWidth,int nHeight,int nBitCount,int nBlockCount,bool bAllocMemeroy)
 {
 	releaseElement();
-
 	m_mutexmErrorList.lock();
 	qDeleteAll(listError);
 	listError.clear();
@@ -34,7 +31,6 @@ void CMyErrorList::initErrorList(int nWidth,int nHeight,int nBitCount,int nBlock
  		pElement = NULL;
  	}
 	m_mutexmErrorList.unlock();
-
 }
 void CMyErrorList::releaseElement()
 {

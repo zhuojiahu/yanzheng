@@ -64,27 +64,19 @@ WidgetReport::WidgetReport(QWidget *parent,int temp)
 	//测试代码
 	connect(ui.tableView, SIGNAL(clicked(QModelIndex)), this, SLOT(slots_ShowPie(QModelIndex)));
 	connect(ui.pushButton_check,SIGNAL(clicked()),this,SLOT(slots_check()));
-	connect(ui.Btn_Export,SIGNAL(clicked()),this,SLOT(slots_Export()));
 	memset(&m_temp,0,sizeof(TemporaryData));
 }
 void WidgetReport::slots_check()
 {
 	QDate dateSelecte = ui.calendarWidget->selectedDate();
-	QString temp = dateSelecte.toString(Qt::ISODate);
-	temp.replace("-", "");
+	QDateTime dateTime = QDateTime::currentDateTime();
+	QString temp = dateTime.toString("yyMMddhhmmss");
+	temp = temp.mid(0,8);
 	QList<SeleteData> m_temp = m_database->queryAll(temp);
-	//TemporaryData m_temp = m_database-> queryAll(temp);
 	insertReport(temp,m_temp);
 	m_lastTime = temp;
 	m_lastDataCount = m_temp.count();
 }
-
-
-void WidgetReport::slots_Export()
-{
-	QMessageBox::information(NULL, QString::fromLocal8Bit("注意"), QString::fromLocal8Bit("保存excel时间较长请耐心等待约10秒左右"), QMessageBox::Yes, QMessageBox::Yes);
-}
-
 void WidgetReport::resizeEvent(QResizeEvent *event)
 {
 	pieImage->setSize(ui.widget->height() - 30 );
@@ -193,19 +185,6 @@ void WidgetReport::slots_ShowPie(QModelIndex modelIndex)
 		temp.m_AllCheckCount = m_temp[i].m_AllCount;
 		m_dateList.push_back(temp);
 	}
-	/*
-	TemporaryData m_temp = m_database->sortById(name);
-	for(int i = 1; i < 50;i++)
-	{
-		if(m_temp.m_Type[i] != 0)
-		{
-			TData temp;
-			temp.m_type = m_temp.m_Type[i];
-			temp.m_Count = m_temp.m_CameraTypeCount[i];
-			m_dateList.push_back(temp);
-		}
-	}
-	*/
 	drawPieImage();
 }
 void WidgetReport::insertReport(QString id,QList<SeleteData> m_datalist)

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget_count.h'
 **
-** Created: Wed Jun 22 14:39:32 2022
+** Created: Mon Jun 27 17:11:23 2022
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Widget_Count[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,35 +33,23 @@ static const uint qt_meta_data_Widget_Count[] = {
  // slots: signature, parameters, type, tag, flags
       19,   13,   14,   13, 0x0a,
       38,   13,   14,   13, 0x0a,
-      60,   13,   14,   13, 0x0a,
-      85,   13,   13,   13, 0x08,
-     113,   13,   13,   13, 0x08,
-     132,   13,   13,   13, 0x08,
-     153,   13,   14,   13, 0x08,
-     185,   13,   14,   13, 0x08,
-     208,   13,   13,   13, 0x08,
-     229,   13,   13,   13, 0x08,
-     254,   13,   13,   13, 0x08,
-     270,   13,   13,   13, 0x08,
-     290,   13,   13,   13, 0x08,
-     303,   13,   13,   13, 0x08,
-     322,   13,   14,   13, 0x08,
-     352,   13,   14,   13, 0x08,
+      60,   13,   13,   13, 0x08,
+      88,   13,   13,   13, 0x08,
+     107,   13,   13,   13, 0x08,
+     128,   13,   13,   13, 0x08,
+     149,   13,   13,   13, 0x08,
+     174,   13,   13,   13, 0x08,
+     190,   13,   13,   13, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Widget_Count[] = {
     "Widget_Count\0\0bool\0slots_intoWidget()\0"
-    "slots_SaveCountInfo()\0slots_SaveALLCountInfo()\0"
-    "slots_timerClearCountInfo()\0"
+    "slots_SaveCountInfo()\0slots_timerClearCountInfo()\0"
     "slots_OpenRecord()\0slots_DeleteRecord()\0"
-    "slots_SaveCountHourInfoBytime()\0"
-    "slots_ClearCountInfo()\0slots_saveRecordOK()\0"
-    "slots_saveRecordCancel()\0slots_shiftOK()\0"
-    "slots_shiftCancel()\0slots_turn()\0"
-    "slots_updateInfo()\0slots_InsertCountCameraInfo()\0"
-    "slots_InsertCountHourInfo()\0"
+    "slots_saveRecordOK()\0slots_saveRecordCancel()\0"
+    "slots_shiftOK()\0slots_shiftCancel()\0"
 };
 
 void Widget_Count::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -74,25 +62,13 @@ void Widget_Count::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 1: { bool _r = _t->slots_SaveCountInfo();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 2: { bool _r = _t->slots_SaveALLCountInfo();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 3: _t->slots_timerClearCountInfo(); break;
-        case 4: _t->slots_OpenRecord(); break;
-        case 5: _t->slots_DeleteRecord(); break;
-        case 6: { bool _r = _t->slots_SaveCountHourInfoBytime();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 7: { bool _r = _t->slots_ClearCountInfo();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 8: _t->slots_saveRecordOK(); break;
-        case 9: _t->slots_saveRecordCancel(); break;
-        case 10: _t->slots_shiftOK(); break;
-        case 11: _t->slots_shiftCancel(); break;
-        case 12: _t->slots_turn(); break;
-        case 13: _t->slots_updateInfo(); break;
-        case 14: { bool _r = _t->slots_InsertCountCameraInfo();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 15: { bool _r = _t->slots_InsertCountHourInfo();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+        case 2: _t->slots_timerClearCountInfo(); break;
+        case 3: _t->slots_OpenRecord(); break;
+        case 4: _t->slots_DeleteRecord(); break;
+        case 5: _t->slots_saveRecordOK(); break;
+        case 6: _t->slots_saveRecordCancel(); break;
+        case 7: _t->slots_shiftOK(); break;
+        case 8: _t->slots_shiftCancel(); break;
         default: ;
         }
     }
@@ -130,9 +106,9 @@ int Widget_Count::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 9;
     }
     return _id;
 }

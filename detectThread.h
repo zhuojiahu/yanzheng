@@ -15,7 +15,7 @@ public:
 	void run();
 	void ProcessHanlde(int);
 signals:
-	void signals_updateActiveImg(int nCamNo,int nImgNo,double dCostTime,int tmpResult);
+	//void signals_updateActiveImg(int nCamNo,int nImgNo,double dCostTime,int tmpResult);
 	void signals_AddErrorTableView(int nCamSN,int nSignalNo,int nErrorType);
 	void signals_SaveReport();
 	//void signals_updateCameraFailureRate();

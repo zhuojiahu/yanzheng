@@ -67,7 +67,6 @@ public:
 	QPushButton *buttonTurnImage;
 	QPushButton *buttonSet;
 	QLineEdit *PamCount;
-	int NCamCount;
 private:
 	QWidget* nPamaSet;
 	QWidget *widgetContent;

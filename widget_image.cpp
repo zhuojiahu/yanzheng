@@ -8,10 +8,9 @@ ImageWidget::ImageWidget(QWidget *parent)
 	iSpacing = 10;
 	iShownMode = -1;
 	iImagePage = 0;
-	NCamCount = 8;
 	bIsCarveWidgetShow = false;
 	bIsStopAllStessCheck = false;
-	for (int i = 0; i < CAMERA_MAX_COUNT; i++)
+	for (int i = 0; i < pMainFrm->m_sSystemInfo.iCamCount; i++)
 	{
 		bIsShow[i] = true;
 		bIsShowErrorImage[i] = false;
@@ -33,7 +32,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 }
 ImageWidget::~ImageWidget()
 {
-	for (int i = 0; i < CAMERA_MAX_COUNT; i++)
+	for (int i = 0; i < pMainFrm->m_sSystemInfo.iCamCount; i++)
 	{
 		delete[] sAlgImageLocInfo[i].sXldPoint.nColsAry;
 		delete[] sAlgImageLocInfo[i].sXldPoint.nRowsAry;
@@ -102,7 +101,7 @@ void ImageWidget::initDialog()
 	QLabel* PamName = new QLabel();
 	PamName->setText(QString::fromLocal8Bit("本地验证图像数:"));
 	PamCount = new QLineEdit();
-	PamCount->setText("8");
+	PamCount->setText(QString::number(pMainFrm->NCamCount));
 	QPushButton * nPushSure = new QPushButton();
 	nPushSure->setText(QString::fromLocal8Bit("确认"));
 	QHBoxLayout* gridSetPam = new QHBoxLayout();
@@ -167,19 +166,25 @@ void ImageWidget::initDialog()
 
 void ImageWidget::slots_setPama()
 {
+	PamCount->setText(QString::number(pMainFrm->NCamCount));
 	nPamaSet->raise();
 	nPamaSet->show();
 }
 void ImageWidget::slot_PameSure()
 {
-	int tempCamCount = PamCount->text().toInt();
-	if(tempCamCount<3)
+	if(pMainFrm->m_sRunningInfo.m_bCheck)
 	{
-		QMessageBox::information(this,tr("Error"),QString::fromLocal8Bit("输入参数必须大于2"));
+		QMessageBox::information(this,tr("Infomation"),tr("Please Stop Detection First!"));
 		return;
 	}
-	NCamCount = tempCamCount;
-	nPamaSet->hide();
+	int tempCamCount = PamCount->text().toInt();
+	if(tempCamCount>=3 && tempCamCount<=50)
+	{
+		pMainFrm->NCamCount = tempCamCount;
+		nPamaSet->hide();
+	}else{
+		QMessageBox::information(this,tr("Error"),QString::fromLocal8Bit("输入参数区间限制为3-50"));
+	}
 }
 void ImageWidget::slots_turnImage()
 {

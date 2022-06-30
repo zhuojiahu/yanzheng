@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'countset.ui'
 **
-** Created: Tue Jun 21 16:59:46 2022
+** Created: Fri Jun 24 17:22:41 2022
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -18,7 +18,6 @@
 #include <QtGui/QCalendarWidget>
 #include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
-#include <QtGui/QFrame>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
@@ -37,18 +36,6 @@ class Ui_CountSet
 {
 public:
     QVBoxLayout *verticalLayout_2;
-    DHBaseWidget *widget_conut;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *Layout_countTitle;
-    QHBoxLayout *horizontalLayout_7;
-    QLabel *label_total;
-    QFrame *frame;
-    QLabel *label_failur;
-    QFrame *frame_2;
-    QLabel *label_failurRate;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton_save;
-    QPushButton *pushButton_clear;
     DHBaseWidget *widget_calendar;
     QGridLayout *gridLayout;
     QPushButton *pushButton_deleteRecord;
@@ -87,95 +74,16 @@ public:
     {
         if (CountSet->objectName().isEmpty())
             CountSet->setObjectName(QString::fromUtf8("CountSet"));
-        CountSet->resize(330, 775);
+        CountSet->resize(330, 784);
         CountSet->setMinimumSize(QSize(300, 0));
         CountSet->setMaximumSize(QSize(330, 16777215));
         verticalLayout_2 = new QVBoxLayout(CountSet);
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        widget_conut = new DHBaseWidget(CountSet);
-        widget_conut->setObjectName(QString::fromUtf8("widget_conut"));
-        QFont font;
-        font.setPointSize(12);
-        widget_conut->setFont(font);
-        verticalLayout = new QVBoxLayout(widget_conut);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(-1, 0, -1, -1);
-        Layout_countTitle = new QHBoxLayout();
-        Layout_countTitle->setObjectName(QString::fromUtf8("Layout_countTitle"));
-
-        verticalLayout->addLayout(Layout_countTitle);
-
-        horizontalLayout_7 = new QHBoxLayout();
-        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        label_total = new QLabel(widget_conut);
-        label_total->setObjectName(QString::fromUtf8("label_total"));
-        QFont font1;
-        font1.setPointSize(9);
-        font1.setBold(true);
-        font1.setWeight(75);
-        label_total->setFont(font1);
-        label_total->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_7->addWidget(label_total);
-
-        frame = new QFrame(widget_conut);
-        frame->setObjectName(QString::fromUtf8("frame"));
-        frame->setFrameShape(QFrame::VLine);
-        frame->setFrameShadow(QFrame::Raised);
-
-        horizontalLayout_7->addWidget(frame);
-
-        label_failur = new QLabel(widget_conut);
-        label_failur->setObjectName(QString::fromUtf8("label_failur"));
-        label_failur->setFont(font1);
-        label_failur->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_7->addWidget(label_failur);
-
-        frame_2 = new QFrame(widget_conut);
-        frame_2->setObjectName(QString::fromUtf8("frame_2"));
-        frame_2->setFrameShape(QFrame::VLine);
-        frame_2->setFrameShadow(QFrame::Raised);
-
-        horizontalLayout_7->addWidget(frame_2);
-
-        label_failurRate = new QLabel(widget_conut);
-        label_failurRate->setObjectName(QString::fromUtf8("label_failurRate"));
-        label_failurRate->setFont(font1);
-        label_failurRate->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_7->addWidget(label_failurRate);
-
-
-        verticalLayout->addLayout(horizontalLayout_7);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        pushButton_save = new QPushButton(widget_conut);
-        pushButton_save->setObjectName(QString::fromUtf8("pushButton_save"));
-        pushButton_save->setMinimumSize(QSize(120, 40));
-        pushButton_save->setMaximumSize(QSize(120, 40));
-        pushButton_save->setFont(font);
-
-        horizontalLayout->addWidget(pushButton_save);
-
-        pushButton_clear = new QPushButton(widget_conut);
-        pushButton_clear->setObjectName(QString::fromUtf8("pushButton_clear"));
-        pushButton_clear->setMinimumSize(QSize(120, 40));
-        pushButton_clear->setMaximumSize(QSize(120, 40));
-        pushButton_clear->setFont(font);
-
-        horizontalLayout->addWidget(pushButton_clear);
-
-
-        verticalLayout->addLayout(horizontalLayout);
-
-
-        verticalLayout_2->addWidget(widget_conut);
-
         widget_calendar = new DHBaseWidget(CountSet);
         widget_calendar->setObjectName(QString::fromUtf8("widget_calendar"));
+        QFont font;
+        font.setPointSize(12);
         widget_calendar->setFont(font);
         gridLayout = new QGridLayout(widget_calendar);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
@@ -184,10 +92,10 @@ public:
         pushButton_deleteRecord->setObjectName(QString::fromUtf8("pushButton_deleteRecord"));
         pushButton_deleteRecord->setMinimumSize(QSize(100, 40));
         pushButton_deleteRecord->setMaximumSize(QSize(80, 40));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
-        font2.setPointSize(10);
-        pushButton_deleteRecord->setFont(font2);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
+        font1.setPointSize(10);
+        pushButton_deleteRecord->setFont(font1);
 
         gridLayout->addWidget(pushButton_deleteRecord, 2, 2, 1, 1);
 
@@ -222,7 +130,7 @@ public:
         pushButton_openRecord->setSizePolicy(sizePolicy);
         pushButton_openRecord->setMinimumSize(QSize(100, 40));
         pushButton_openRecord->setMaximumSize(QSize(80, 40));
-        pushButton_openRecord->setFont(font2);
+        pushButton_openRecord->setFont(font1);
 
         gridLayout->addWidget(pushButton_openRecord, 2, 1, 1, 1);
 
@@ -387,11 +295,6 @@ public:
     void retranslateUi(QWidget *CountSet)
     {
         CountSet->setWindowTitle(QApplication::translate("CountSet", "Form", 0, QApplication::UnicodeUTF8));
-        label_total->setText(QApplication::translate("CountSet", "TextLabel", 0, QApplication::UnicodeUTF8));
-        label_failur->setText(QApplication::translate("CountSet", "TextLabel", 0, QApplication::UnicodeUTF8));
-        label_failurRate->setText(QApplication::translate("CountSet", "TextLabel", 0, QApplication::UnicodeUTF8));
-        pushButton_save->setText(QApplication::translate("CountSet", "Save", 0, QApplication::UnicodeUTF8));
-        pushButton_clear->setText(QApplication::translate("CountSet", "Clear", 0, QApplication::UnicodeUTF8));
         pushButton_deleteRecord->setText(QApplication::translate("CountSet", "Delete record", 0, QApplication::UnicodeUTF8));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()

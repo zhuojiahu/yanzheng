@@ -11,59 +11,31 @@ Reviewer::Reviewer(QWidget *parent)
 
 Reviewer::~Reviewer()
 {
-
+	
 }
 void Reviewer::initLastData()
 {
 	QSettings LoadLastData(m_sConfigInfo.m_strDataPath,QSettings::IniFormat);
 	LoadLastData.setIniCodec(QTextCodec::codecForName("GBK"));
 	QString strSession;
-	for (int j = 1;j<=pMainFrm->m_sErrorInfo.m_iErrorTypeCount;j++)
-	{
-		for (int i = 0;i<pMainFrm->m_sSystemInfo.iCamCount;i++)
-		{
-			strSession = QString("DefaultTypeCount/EveryRow%1").arg(i);
-			int xRowTemp=LoadLastData.value(strSession,-1).toInt();
-
-			strSession = QString("DefaultTypeCount/EveryLine%1").arg(j);
-			int yLineTemp=LoadLastData.value(strSession,-1).toInt();
-
-			if ( xRowTemp == -1 || yLineTemp == -1 )
-			{
-				continue;
-			}
-
-			strSession = QString("DefaultTypeCount/EveryNumber%1_%2").arg(xRowTemp).arg(yLineTemp);
-			m_sRunningInfo.m_cErrorTypeInfo[xRowTemp].iErrorCountByType[yLineTemp]=LoadLastData.value(strSession,0).toInt();
-			m_sRunningInfo.m_iErrorTypeCount[j]+=m_sRunningInfo.m_cErrorTypeInfo[xRowTemp].iErrorCountByType[yLineTemp];
-			m_sRunningInfo.m_iErrorCamCount[i]+=m_sRunningInfo.m_cErrorTypeInfo[xRowTemp].iErrorCountByType[yLineTemp];
-		}
-	}
-	strSession=QString("HeadCount/Checknumber");
-	m_sRunningInfo.m_checkedNum=LoadLastData.value(strSession,0).toInt();
-
-	strSession=QString("HeadCount/Failurenumber");
-	m_sRunningInfo.m_failureNumFromIOcard=LoadLastData.value(strSession,0).toInt();
-
-	//上一次整点数据
-	strSession = QString("LastTimeDate/LastTime");
-	LastTime=QDateTime::fromString(LoadLastData.value(strSession,"0000-00-00 00:00").toString(),"yyyy-MM-dd hh:mm");
 	strSession = QString("LastTimeDate/Checknumber");
-	LastTimeData.m_AllCount = LoadLastData.value(strSession,0).toInt();
+	m_sRunningInfo.m_checkedNum = LoadLastData.value(strSession,0).toInt();
 	strSession = QString("LastTimeDate/Failurenumber");
-	LastTimeData.m_FailCount = LoadLastData.value(strSession,0).toInt();
+	m_sRunningInfo.m_failureNumFromIOcard = LoadLastData.value(strSession,0).toInt();
+	strSession = QString("LastTimeDate/NCamCount");
+	NCamCount = LoadLastData.value(strSession,8).toInt();
 
-	for (int i=1;i<ERRORTYPE_MAX_COUNT;i++)
+	for (int i=1;i<=m_sErrorInfo.m_iErrorTypeCount;i++)
 	{
 		strSession = QString("LastTimeDate/ErrorType_%1_count").arg(i);
-		LastTimeData.m_CameraTypeCount[i] = LoadLastData.value(strSession,0).toInt();
+		m_sRunningInfo.m_iErrorTypeCount[i] = LoadLastData.value(strSession,0).toInt();
 	}
-	for (int i=1;i<CAMERA_MAX_COUNT;i++)
+	for (int i=1;i<=m_sSystemInfo.iCamCount;i++)
 	{
-		for(int j=1;j<ERRORTYPE_MAX_COUNT;j++)
+		for(int j=1;j<=m_sErrorInfo.m_iErrorTypeCount;j++)
 		{
 			strSession = QString("LastTimeDate/Camera%1_ErrorType%2").arg(i).arg(j);
-			LastTimeData.m_TypeCount[i][j] = LoadLastData.value(strSession,0).toInt();
+			m_sRunningInfo.m_cErrorTypeInfo[i-1].iErrorCountByType[j] = LoadLastData.value(strSession,0).toInt();
 		}
 	}
 	//加载对应模板里的长宽并写入到配置文件中
@@ -101,7 +73,7 @@ void Reviewer::GrabCallBack(const s_GBSIGNALINFO *SigInfo)
 		Logfile.write(QString("GrabCallBack:") + str ,CheckLog);
 		return;
 	}
-	if(m_sRealCamInfo[iRealCameraSN].m_iImageIdxLast[0] == widget_carveSetting->image_widget->NCamCount)
+	if(m_sRealCamInfo[iRealCameraSN].m_iImageIdxLast[0] == NCamCount)
 	{
 		return;
 	}
@@ -114,12 +86,12 @@ void Reviewer::GrabCallBack(const s_GBSIGNALINFO *SigInfo)
 	uchar* pImageBuffer = NULL;
 	int nAddr = 0;
 	int nWidth, nHeight;
-	mutexDetectElement[iRealCameraSN].lock();
+	//mutexDetectElement[iRealCameraSN].lock();
 	m_sRealCamInfo[iRealCameraSN].m_pGrabber->GetParamInt(GBImageBufferAddr, nAddr);
 	pImageBuffer = (uchar*)nAddr;
 	m_sRealCamInfo[iRealCameraSN].m_pGrabber->GetParamInt(GBImageWidth, nWidth);
 	m_sRealCamInfo[iRealCameraSN].m_pGrabber->GetParamInt(GBImageHeight, nHeight);
-	mutexDetectElement[iRealCameraSN].unlock();
+	//mutexDetectElement[iRealCameraSN].unlock();
 
 	CGrabElement *pGrabElement = NULL;
 	if(nQueue[iRealCameraSN].listGrab.count()>0)
@@ -221,7 +193,9 @@ void Reviewer::initInterface()
 	m_sSystemInfo.m_strModelName = m_sConfigInfo.m_strGrabInfoPath;
 	//切割后相机个数
 	m_sSystemInfo.iCamCount = iniset.value("/system/CarveDeviceCount",1).toInt();
+	//相关变量初始化
 	m_sSystemInfo.m_iTrackNumber = 0;
+	pMainFrm->m_sSystemInfo.iIsCameraCount = true;
 	initLastData();
 	for (int i=0;i<m_sSystemInfo.iCamCount;i++)
 	{
@@ -516,6 +490,7 @@ void Reviewer::slots_Clear()
 {
 	m_sRunningInfo.m_failureNumFromIOcard = 0;
 	m_sRunningInfo.m_checkedNum = 0;
+	Count_widget->ClearAllData();
 }
 void Reviewer::slots_OnBtnStar()
 {
@@ -523,17 +498,18 @@ void Reviewer::slots_OnBtnStar()
 	if (!m_sRunningInfo.m_bCheck )//开始检测
 	{
 		//图像综合清零
-		m_cCombine.m_MutexCombin.lock();
+		for(int i=0;i<256;i++)
+		{
+			m_cCombine.SetReject(i,false);
+		}
 		m_cCombine.RemovAllResult();
 		m_cCombine.RemovAllError();
-		m_cCombine.m_MutexCombin.unlock();
 		pMainFrm->m_sSystemInfo.m_iTrackNumber = 0;
 		if (m_sSystemInfo.m_bLoadModel)
 		{
 			for (int i = 0; i < m_sSystemInfo.iCamCount;i++)
 			{
 				m_sRealCamInfo[i].m_iImageIdxLast[0] = 0;
-				m_sRealCamInfo[i].m_iImageIdxLast[1] = 0;
 			}
 			m_sRunningInfo.nGSoap_ErrorTypeCount[0]=0;
 			m_sRunningInfo.nGSoap_ErrorCamCount[0]=0;
@@ -549,10 +525,8 @@ void Reviewer::slots_OnBtnStar()
 		QPixmap pixmap(":/toolWidget/stop");
 		TBtn->setText(tr("Stop"));
 		TBtn->setIcon(pixmap);
-		TBtn->bStatus = true;
 		m_sRunningInfo.m_bCheck = true;
 	}
-
 	else if (m_sRunningInfo.m_bCheck)//停止检测
 	{
 		m_sRunningInfo.m_bCheck = false;
@@ -560,31 +534,37 @@ void Reviewer::slots_OnBtnStar()
 		QPixmap pixmap(":/toolWidget/start");
 		TBtn->setText(tr("Start"));
 		TBtn->setIcon(pixmap);
-
 		for (int i = 0;i<m_sSystemInfo.iCamCount;i++)
 		{
 			s_SystemInfoforAlg sSystemInfoforAlg;
 			sSystemInfoforAlg.bIsChecking = false;
 			m_cBottleCheck[i].setsSystemInfo(sSystemInfoforAlg);
 		}
-		TBtn->bStatus = false;
 	}
 }
 void Reviewer::SaveLastData()
 {
-	QSettings iniDataSet(m_sConfigInfo.m_strDataPath,QSettings::IniFormat);
+	/*QSettings iniDataSet(m_sConfigInfo.m_strDataPath,QSettings::IniFormat);
 	iniDataSet.setIniCodec(QTextCodec::codecForName("GBK"));
-	iniDataSet.setValue("system/checkedNum",m_sRunningInfo.m_checkedNum);
-	iniDataSet.setValue("system/failureNum",m_sRunningInfo.m_failureNumFromIOcard);
+	iniDataSet.setValue("HeadCount/checkedNum",m_sRunningInfo.m_checkedNum);
+	iniDataSet.setValue("HeadCount/failureNum",m_sRunningInfo.m_failureNumFromIOcard);
 	for (int i=0;i< m_sSystemInfo.iCamCount;i++)
 	{
-		iniDataSet.setValue(QString("LastTimeDate/ErrorCamera_%1_count").arg(i),m_sRunningInfo.m_iErrorCamCount[i]);
-	}
+	iniDataSet.setValue(QString("LastTimeDate/ErrorCamera_%1_count").arg(i),m_sRunningInfo.m_iErrorCamCount[i]);
+	}*/
 }
 void Reviewer::closeEvent(QCloseEvent *e)
 {
 	m_bIsThreadDead = TRUE;
 	SaveLastData();
+	m_sRunningInfo.m_bCheck = false;
+	s_Status  sReturnStatus = m_cBottleModel.CloseModelDlg();
+	if (sReturnStatus.nErrorID != RETURN_OK)
+	{
+		pMainFrm->Logfile.write(tr("Error in Close ModelDlg--OnExit"),AbnormityLog);
+		return;
+	}
+	Sleep(1000);
 }
 void Reviewer::InitCheckSet()
 {

@@ -49,15 +49,15 @@ public:
 	DetectThread *pdetthread[CAMERA_MAX_COUNT];
 	s_ConfigInfo m_sConfigInfo;
 	s_SystemInfo m_sSystemInfo;
-	s_ErrorInfo m_sErrorInfo;
+	s_ErrorInfo m_sErrorInfo;  //最大支持40个相机，单次50个瓶子的模拟
 	s_RunningInfo m_sRunningInfo;
 	CMyErrorList m_ErrorList;
 	CCombineRlt m_cCombine;
 	CLogFile Logfile;
 	QVector<QRgb> m_vcolorTable;
-	QMutex m_mutexmCarve[CAMERA_MAX_COUNT];
+	QMutex m_mutexmCarve;
 	TemporaryData LastTimeData;
-	QDateTime LastTime;
+	int NCamCount;
 private:
 	Ui::ReviewerClass ui;
 public:
@@ -73,7 +73,7 @@ public:
 	s_RealCamInfo m_sRealCamInfo[CAMERA_MAX_COUNT];
 	s_CarvedCamInfo m_sCarvedCamInfo[CAMERA_MAX_COUNT];
 	CDetectElement m_detectElement[CAMERA_MAX_COUNT];
-	QMutex mutexDetectElement[CAMERA_MAX_COUNT];
+	QMutex mutexElement;
 };
 
 #endif // REVIEWER_H
