@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'reviewer.ui'
 **
-** Created: Fri Jun 24 17:22:39 2022
+** Created: Fri Jul 8 17:25:50 2022
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -33,6 +33,9 @@ public:
         if (ReviewerClass->objectName().isEmpty())
             ReviewerClass->setObjectName(QString::fromUtf8("ReviewerClass"));
         ReviewerClass->resize(600, 400);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/sys/icon"), QSize(), QIcon::Normal, QIcon::Off);
+        ReviewerClass->setWindowIcon(icon);
         centralWidget = new QWidget(ReviewerClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout_2 = new QVBoxLayout(centralWidget);

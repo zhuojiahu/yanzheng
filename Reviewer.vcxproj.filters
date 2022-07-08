@@ -332,10 +332,23 @@
     <ClInclude Include="GeneratedFiles\ui_Report.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Reviewer_zh.ts">
       <Filter>Translation Files</Filter>
     </None>
+    <None Include="Resources\LOGO.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Reviewer.rc" />
   </ItemGroup>
 </Project>

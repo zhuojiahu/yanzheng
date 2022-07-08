@@ -36,10 +36,12 @@ void Reviewer::initLastData()
 		{
 			strSession = QString("LastTimeDate/Camera%1_ErrorType%2").arg(i).arg(j);
 			m_sRunningInfo.m_cErrorTypeInfo[i-1].iErrorCountByType[j] = LoadLastData.value(strSession,0).toInt();
+			strSession = QString("LastTimeDate/Camera%1_LastImgErrorType%2").arg(i).arg(j);
+			m_sErrorInfo.i_countErrorType[i][j] = LoadLastData.value(strSession,0).toInt();
 		}
 	}
 	//加载对应模板里的长宽并写入到配置文件中
-	QSettings iniCameraSet(m_sSystemInfo.m_strModelName,QSettings::IniFormat);
+	QSettings iniCameraSet(m_sConfigInfo.m_strGrabInfoPath,QSettings::IniFormat);
 	iniCameraSet.setIniCodec(QTextCodec::codecForName("GBK"));
 	for(int i =0;i<m_sSystemInfo.iRealCamCount;i++)
 	{
@@ -65,16 +67,9 @@ void Reviewer::GrabCallBack(const s_GBSIGNALINFO *SigInfo)
 	{
 		return;
 	}
-	if(SigInfo->nErrorCode != GBOK)
-	{
-		s_GBERRORINFO ErrorInfo;
-		m_sRealCamInfo[iRealCameraSN].m_pGrabber->GetLastErrorInfo(&ErrorInfo);
-		QString str = QString((QString("Camera:%1,")+QString("Error code:%2,")+QString("Error description:%3,")+QString("Additional information:%4")).arg(iRealCameraSN+1).arg(ErrorInfo.nErrorCode).arg(ErrorInfo.strErrorDescription).arg(ErrorInfo.strErrorRemark));		
-		Logfile.write(QString("GrabCallBack:") + str ,CheckLog);
-		return;
-	}
 	if(m_sRealCamInfo[iRealCameraSN].m_iImageIdxLast[0] == NCamCount)
 	{
+		m_sRealCamInfo[iRealCameraSN].m_pGrabber->StopGrab();
 		return;
 	}
 	int imgNumber = ++m_sRealCamInfo[iRealCameraSN].m_iImageIdxLast[0];
@@ -190,7 +185,7 @@ void Reviewer::initInterface()
 	m_sSystemInfo.shift2.setHMS(iShift[1]/10000,(iShift[1]%10000)/100,iShift[1]%100);
 	m_sSystemInfo.shift3.setHMS(iShift[2]/10000,(iShift[2]%10000)/100,iShift[2]%100);
 	m_sConfigInfo.m_strGrabInfoPath = m_sConfigInfo.m_strAppPath + "ModelInfo/" + m_sSystemInfo.LastModelName + "/GrabInfo.ini";
-	m_sSystemInfo.m_strModelName = m_sConfigInfo.m_strGrabInfoPath;
+	m_sSystemInfo.m_strModelName = m_sSystemInfo.LastModelName;
 	//切割后相机个数
 	m_sSystemInfo.iCamCount = iniset.value("/system/CarveDeviceCount",1).toInt();
 	//相关变量初始化
@@ -275,11 +270,10 @@ void Reviewer::initInterface()
 		struGrabCardPara[i].Context = this;
 		InitGrabCard(struGrabCardPara[i],i);
 	}
-	for (int i = 0;i<m_sSystemInfo.iRealCamCount;i++)
+	/*for (int i = 0;i<m_sSystemInfo.iRealCamCount;i++)
 	{
 		m_sRealCamInfo[i].m_pGrabber->StartGrab();
-		m_sRealCamInfo[i].m_bGrabIsStart=TRUE;
-	}
+	}*/
 	InitImage();
 }
 void Reviewer::InitGrabCard(s_GBINITSTRUCT struGrabCardPara,int index)
@@ -526,6 +520,11 @@ void Reviewer::slots_OnBtnStar()
 		TBtn->setText(tr("Stop"));
 		TBtn->setIcon(pixmap);
 		m_sRunningInfo.m_bCheck = true;
+		Sleep(10);
+		for (int i = 0;i<m_sSystemInfo.iRealCamCount;i++)
+		{
+			m_sRealCamInfo[i].m_pGrabber->StartGrab();
+		}
 	}
 	else if (m_sRunningInfo.m_bCheck)//停止检测
 	{
@@ -595,6 +594,8 @@ void Reviewer::InitCheckSet()
 		strcpy_s(sAlgInitParam.chCurrentPath,m_sConfigInfo.m_sAlgFilePath.toLocal8Bit()); 
 		memset(sAlgInitParam.chModelName,0,MAX_PATH); //模板名称
 		strcpy_s(sAlgInitParam.chModelName,m_sSystemInfo.m_strModelName.toLocal8Bit()); 
+		//qDebug()<<sAlgInitParam.chCurrentPath<<"--"<<sAlgInitParam.chModelName;
+		//E:/GlasswareDetectSystem2/./runR/ModelInfo -- 111111111111111
 		sReturnStatus = m_cBottleCheck[i].init(sAlgInitParam);
 
 		if (sReturnStatus.nErrorID != RETURN_OK && sReturnStatus.nErrorID != 1)

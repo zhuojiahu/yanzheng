@@ -71,7 +71,7 @@ void WidgetReport::slots_check()
 	QDate dateSelecte = ui.calendarWidget->selectedDate();
 	QDateTime dateTime = QDateTime::currentDateTime();
 	QString temp = dateTime.toString("yyMMddhhmmss");
-	temp = temp.mid(0,8);
+	temp = temp.mid(0,6);
 	QList<SeleteData> m_temp = m_database->queryAll(temp);
 	insertReport(temp,m_temp);
 	m_lastTime = temp;

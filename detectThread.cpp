@@ -260,6 +260,7 @@ void DetectThread::CountDefectIOCard(int nSignalNo,int tmpResult)
 	if (pMainFrm->m_cCombine.ConbineResult(nSignalNo,pMainFrm->m_sSystemInfo.iCamCount,comResult))//图像都拍完后结果综合
 	{
 		pMainFrm->m_sRunningInfo.m_checkedNum++;
+		//pMainFrm->Logfile.write(QString("%1-%2-%3-").arg(pMainFrm->m_sRunningInfo.m_checkedNum).arg(pMainFrm->m_sRunningInfo.m_failureNumFromIOcard).arg(nSignalNo),CheckLog);
 		if(comResult)
 		{
 			pMainFrm->m_sRunningInfo.m_failureNumFromIOcard++;

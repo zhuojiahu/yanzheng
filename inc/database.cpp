@@ -12,7 +12,7 @@ bool DataBase::createConnection()
 {
 	//QStringList strlist = QSqlDatabase::drivers();
 	//以后就可以用"sqlite1"与数据库进行连接了
-	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "sqlite1");
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "sqlite2");
 	db.setDatabaseName(".//Report1.db");
 	if( !db.open())
 	{
@@ -24,7 +24,7 @@ bool DataBase::createConnection()
 //创建数据库表
 bool DataBase::createTable()
 {
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	QString sql("create table Report(id varchar,AllCount int,TickCount int,type int,failCount int");
 	for(int i=1;i<=cameraCount;i++)
@@ -49,7 +49,7 @@ bool DataBase::createTable()
 //向数据库中插入记录
 bool DataBase::insert(QString id,TemporaryData temp)
 {
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	QString sql="";
 	for(int i=1;i<50;i++)
@@ -78,7 +78,7 @@ bool DataBase::insert(QString id,TemporaryData temp)
 //查询所有信息
 QList<SeleteData> DataBase::queryAll(QString id)
 {
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	query.exec(QString("select * from Report where id like '%1%'").arg(id));//20200921____
 	//query.exec(QString("select * from Report where id like '%1__00'").arg(id));//20200921__00
@@ -123,7 +123,7 @@ QList<SeleteData> DataBase::queryAll(QString id)
 
 QList<SeleteData> DataBase::queryAll(QString startTime,QString endTime)
 {
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	query.exec(QString("select * from Report where id > %2 and id <= %3 ").arg(startTime).arg(endTime));//20200921____
 
@@ -150,7 +150,7 @@ QList<SeleteData> DataBase::queryAll(QString startTime,QString endTime)
 //根据ID删除记录
 bool DataBase::deleteById(int id)
 {
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	query.prepare(QString("delete from Report where id = %1").arg(id));
 	if(!query.exec())
@@ -163,7 +163,7 @@ bool DataBase::deleteById(int id)
 bool DataBase::deleteFromDate(QString dateId)
 {
 	QString pData = dateId + "0000";
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	query.prepare(QString("delete from Report where id in ( select id from Report where id < %1 )").arg(pData));
 	if(!query.exec())
@@ -183,7 +183,7 @@ bool DataBase::updateById(int id)
 //排序
 QList<SeleteData> DataBase::sortById(QString id)
 {
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	bool success=query.exec(QString("select * from Report where id = %1 order by failCount desc ").arg(id));  //降序
 	QSqlRecord rec = query.record();
@@ -226,7 +226,7 @@ QList<SeleteData> DataBase::sortById(QString id)
 
 QList<SeleteData> DataBase::queryAllByOrder( QString id )
 {	//查询当天所有数据 按时间和不同缺陷的缺陷数 升序 查询
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	query.exec(QString("select * from Report where id like '%1%' order by id,failCount").arg(id));//20200921____
 	//query.exec(QString("select * from Report where id like '%1__00'").arg(id));//20200921__00
@@ -253,7 +253,7 @@ QList<SeleteData> DataBase::queryAllByOrder( QString id )
 
 QList<SeleteData> DataBase::queryOnce( QString id )
 {
-	QSqlDatabase db = QSqlDatabase::database("sqlite1"); //建立数据库连接
+	QSqlDatabase db = QSqlDatabase::database("sqlite2"); //建立数据库连接
 	QSqlQuery query(db);
 	bool success=query.exec(QString("select * from Report where id = %1 order by failCount").arg(id));  //缺陷数升序
 	QSqlRecord rec = query.record();
