@@ -38,28 +38,7 @@ void DetectThread::ProcessHanlde(int Camera)
 		pMainFrm->nQueue[Camera].mDetectLocker.unlock();
 		iCamera = DetectElement.iCameraNormal;
 		//旋转原始图片
-		if (90 == pMainFrm->m_sRealCamInfo[iCamera].m_iImageRoAngle || 180 == pMainFrm->m_sRealCamInfo[iCamera].m_iImageRoAngle || 270 == pMainFrm->m_sRealCamInfo[iCamera].m_iImageRoAngle)
-		{
-			pMainFrm->RoAngle(DetectElement.ImageNormal->SourceImage->bits(), pMainFrm->m_sRealCamInfo[iCamera].m_pRealImage->bits(), \
-				DetectElement.ImageNormal->nWidth, DetectElement.ImageNormal->nHeight, pMainFrm->m_sRealCamInfo[iCamera].m_iImageRoAngle);
-		}
-		else
-		{
-			memcpy(pMainFrm->m_sRealCamInfo[iCamera].m_pRealImage->bits(), DetectElement.ImageNormal->SourceImage->bits(), pMainFrm->m_sRealCamInfo[iCamera].m_iImageWidth * pMainFrm->m_sRealCamInfo[iCamera].m_iImageHeight);
-		}
-		//裁剪原始图片
-		
-		long lImageSize = pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageWidth * pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageHeight;
-		if (lImageSize != DetectElement.ImageNormal->myImage->byteCount())
-		{
-			pMainFrm->Logfile.write(tr("ImageSize unsuitable, Thread:Grab, camera:%1.lImageSize = %2,myImage byteCount = %3").arg(iCamera).arg(lImageSize).arg(DetectElement.ImageNormal->myImage->byteCount()),AbnormityLog);
-			delete DetectElement.ImageNormal->myImage;
-			delete DetectElement.ImageNormal->SourceImage;
-			DetectElement.ImageNormal->myImage = NULL;
-			DetectElement.ImageNormal->SourceImage = NULL;
-			delete DetectElement.ImageNormal;
-			return;
-		}
+		memcpy(pMainFrm->m_sRealCamInfo[iCamera].m_pRealImage->bits(), DetectElement.ImageNormal->SourceImage->bits(), pMainFrm->m_sRealCamInfo[iCamera].m_iImageWidth * pMainFrm->m_sRealCamInfo[iCamera].m_iImageHeight);
 		pMainFrm->CarveImage(pMainFrm->m_sRealCamInfo[iCamera].m_pRealImage->bits(),pMainFrm->m_sCarvedCamInfo[iCamera].m_pGrabTemp,\
 			pMainFrm->m_sRealCamInfo[iCamera].m_iImageWidth,pMainFrm->m_sRealCamInfo[iCamera].m_iImageHeight, pMainFrm->m_sCarvedCamInfo[iCamera].i_ImageX,pMainFrm->m_sCarvedCamInfo[iCamera].i_ImageY,\
 			pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageWidth,pMainFrm->m_sCarvedCamInfo[iCamera].m_iImageHeight);			
@@ -146,6 +125,7 @@ void DetectThread::checkImage(CGrabElement *pElement,int iCheckMode)
 	sAlgCInp.sInputParam.nWidth = pElement->myImage->width();
 	sAlgCInp.sInputParam.nChannel = 1;
 	sAlgCInp.sInputParam.pcData = (char*)pElement->myImage->bits();
+	iCheckMode = 0;
 	if (0 == iCheckMode)
 	{
 		sReturnStatus = pMainFrm->m_cBottleCheck[iCamera].Check(sAlgCInp,&pAlgCheckResult);

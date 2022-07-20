@@ -45,11 +45,11 @@ void Reviewer::initLastData()
 	iniCameraSet.setIniCodec(QTextCodec::codecForName("GBK"));
 	for(int i =0;i<m_sSystemInfo.iRealCamCount;i++)
 	{
-		m_sRealCamInfo[i].m_iImageWidth = iniCameraSet.value(QString("/width/Grab_%1").arg(i),0).toInt();
-		m_sRealCamInfo[i].m_iImageHeight = iniCameraSet.value(QString("/height/Grab_%1").arg(i),0).toInt();
-		QString tempFile = m_sConfigInfo.m_strAppPath + QString("Config/SimulateGrabberConfig%1.ini").arg(i+1);
-		StateTool::WritePrivateProfileQString(QString::fromLocal8Bit("采图参数"),QString::fromLocal8Bit("图像宽度"),QString::number(m_sRealCamInfo[i].m_iImageWidth),tempFile);
-		StateTool::WritePrivateProfileQString(QString::fromLocal8Bit("采图参数"),QString::fromLocal8Bit("图像高度"),QString::number(m_sRealCamInfo[i].m_iImageHeight),tempFile);
+		//m_sRealCamInfo[i].m_iImageWidth = iniCameraSet.value(QString("/width/Grab_%1").arg(i),0).toInt();
+		//m_sRealCamInfo[i].m_iImageHeight = iniCameraSet.value(QString("/height/Grab_%1").arg(i),0).toInt();
+		//QString tempFile = m_sConfigInfo.m_strAppPath + QString("Config/SimulateGrabberConfig%1.ini").arg(i+1);
+		//StateTool::WritePrivateProfileQString(QString::fromLocal8Bit("采图参数"),QString::fromLocal8Bit("图像宽度"),QString::number(m_sRealCamInfo[i].m_iImageWidth),tempFile);
+		//StateTool::WritePrivateProfileQString(QString::fromLocal8Bit("采图参数"),QString::fromLocal8Bit("图像高度"),QString::number(m_sRealCamInfo[i].m_iImageHeight),tempFile);
 	}
 }
 void WINAPI GlobalGrabOverCallback (const s_GBSIGNALINFO* SigInfo)
@@ -167,7 +167,7 @@ void Reviewer::initInterface()
 	m_sSystemInfo.m_iTest = iniset.value("/system/Test",0).toInt();
 	m_sSystemInfo.iRealCamCount = iniset.value("/GarbCardParameter/DeviceNum",2).toInt();	//真实相机个数
 	m_sSystemInfo.LastModelName = iniset.value("/system/LastModelName","default").toString();	//读取上次使用模板
-	
+	m_sSystemInfo.m_iSystemType = iniset.value("/system/systemType",0).toInt();	//读取系统类型
 	int iShift[3];
 	iShift[0] = iniset.value("/system/shift1",000000).toInt();
 	iShift[1] = iniset.value("/system/shift2",80000).toInt();
@@ -188,6 +188,22 @@ void Reviewer::initInterface()
 	m_sSystemInfo.m_strModelName = m_sSystemInfo.LastModelName;
 	//切割后相机个数
 	m_sSystemInfo.iCamCount = iniset.value("/system/CarveDeviceCount",1).toInt();
+
+	if(2 != m_sSystemInfo.m_iSystemType)
+	{
+		int mXuCamera = m_sSystemInfo.iRealCamCount;
+		if(mXuCamera%2 != 0)
+		{
+			mXuCamera++;
+		}
+		if(m_sSystemInfo.iCamCount>mXuCamera+mXuCamera/2)
+		{
+			m_sSystemInfo.iCamCount = mXuCamera+mXuCamera/2;
+		}
+	}
+
+
+
 	//相关变量初始化
 	m_sSystemInfo.m_iTrackNumber = 0;
 	pMainFrm->m_sSystemInfo.iIsCameraCount = true;
@@ -202,7 +218,7 @@ void Reviewer::initInterface()
 	for (int i=0;i<m_sSystemInfo.iRealCamCount;i++)
 	{
 		struGrabCardPara[i].iGrabberTypeSN = i;
-		struGrabCardPara[i].nGrabberSN = iniset.value(QString("/GarbCardParameter/Device%1ID").arg(i+1),-1).toInt();
+		struGrabCardPara[i].nGrabberSN = i;
 		strcpy_s(struGrabCardPara[i].strDeviceName,"SimulaGrab");
 		strcpy_s(struGrabCardPara[i].strDeviceMark,"6735372222222220609");
 		m_sRealCamInfo[i].m_iImageRoAngle = iniset.value(QString("/RoAngle/Device_%1").arg(i+1),0).toInt();
@@ -210,7 +226,8 @@ void Reviewer::initInterface()
 		QString strGrabInitFile = m_sConfigInfo.m_strConfigPath.left(m_sConfigInfo.m_strConfigPath.findRev("/")+1) + QString("SimulateGrabberConfig%1.ini").arg(i+1);
 		memcpy(struGrabCardPara[i].strGrabberFile,strGrabInitFile.toLocal8Bit().data(),GBMaxTextLen);
 	}
-	
+	ReadCorveConfig();
+
 	for (int i=0;i<m_sSystemInfo.iCamCount;i++)
 	{
 		pdetthread[i] = new DetectThread(this,i);

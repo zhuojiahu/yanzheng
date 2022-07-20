@@ -138,14 +138,12 @@ void ImageWidget::initDialog()
 			}else{
 				gridLayoutStressImage->addWidget(listImageShowItem[i],nStressRow%2,nStressRow/2,1,1);
 			}
-			//gridLayoutImage->addWidget(listImageShowItem[i],nNormalRow%nRow,nNormalRow/nRow,1,1);//0.0  
 			nStressRow++;
 		}else{
 			gridLayoutImage->addWidget(listImageShowItem[i],nNormalRow%nRow,nNormalRow/nRow,1,1);//0.0  
 			nNormalRow++;
 		}
 	}
-
 	widgetContentStess->setVisible(false);
 	for (int i = 0;i<pMainFrm->m_sSystemInfo.iCamCount;i++)
 	{

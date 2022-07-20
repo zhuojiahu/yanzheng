@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Widget_CountPlot.ui'
 **
-** Created: Fri Jul 8 17:19:12 2022
+** Created: Wed Jul 20 09:15:19 2022
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
