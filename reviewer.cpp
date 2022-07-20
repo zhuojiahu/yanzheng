@@ -201,8 +201,7 @@ void Reviewer::initInterface()
 			m_sSystemInfo.iCamCount = mXuCamera+mXuCamera/2;
 		}
 	}
-
-
+	m_sSystemInfo.iRealCamCount = m_sSystemInfo.iCamCount;
 
 	//相关变量初始化
 	m_sSystemInfo.m_iTrackNumber = 0;
@@ -337,7 +336,7 @@ void Reviewer::InitGrabCard(s_GBINITSTRUCT struGrabCardPara,int index)
 	if (bRet)
 	{
 		m_sRealCamInfo[index].m_bCameraInitSuccess = TRUE;
-		if(m_sSystemInfo.m_iSystemType != 2)
+		/*if(m_sSystemInfo.m_iSystemType != 2)
 		{
 			m_sRealCamInfo[index+m_sSystemInfo.iRealCamCount].m_bCameraInitSuccess = m_sRealCamInfo[index].m_bCameraInitSuccess;
 			m_sRealCamInfo[index+m_sSystemInfo.iRealCamCount].m_iImageWidth = m_sRealCamInfo[index].m_iImageWidth;
@@ -349,7 +348,7 @@ void Reviewer::InitGrabCard(s_GBINITSTRUCT struGrabCardPara,int index)
 				m_sRealCamInfo[index+m_sSystemInfo.iRealCamCount].m_iImageHeight = m_sRealCamInfo[index+m_sSystemInfo.iRealCamCount].m_iImageWidth;
 				m_sRealCamInfo[index+m_sSystemInfo.iRealCamCount].m_iImageWidth = iTemp;
 			}
-		}
+		}*/
 	}
 	else
 	{
@@ -361,17 +360,17 @@ void Reviewer::InitGrabCard(s_GBINITSTRUCT struGrabCardPara,int index)
 			tr("ErrorDescription:%3").arg(QString::fromLocal8Bit(ErrorInfo.strErrorDescription))+"\n"+tr("ErrorRemark:%4\n").arg(QString::fromLocal8Bit(ErrorInfo.strErrorRemark));
 		QMessageBox::information(this,tr("Error"),str);
 		m_sRealCamInfo[index].m_strErrorInfo = str;
-		if(m_sSystemInfo.m_iSystemType != 2)
+		/*if(m_sSystemInfo.m_iSystemType != 2)
 		{
 			m_sRealCamInfo[index+m_sSystemInfo.iRealCamCount].m_bCameraInitSuccess = m_sRealCamInfo[index].m_bCameraInitSuccess;
-		}
+		}*/
 	}
-	if (90 == m_sRealCamInfo[index].m_iImageRoAngle || 270 == m_sRealCamInfo[index].m_iImageRoAngle )
+	/*if (90 == m_sRealCamInfo[index].m_iImageRoAngle || 270 == m_sRealCamInfo[index].m_iImageRoAngle )
 	{
-		int iTemp = m_sRealCamInfo[index].m_iImageHeight;
-		m_sRealCamInfo[index].m_iImageHeight = m_sRealCamInfo[index].m_iImageWidth;
-		m_sRealCamInfo[index].m_iImageWidth = iTemp;
-	}
+	int iTemp = m_sRealCamInfo[index].m_iImageHeight;
+	m_sRealCamInfo[index].m_iImageHeight = m_sRealCamInfo[index].m_iImageWidth;
+	m_sRealCamInfo[index].m_iImageWidth = iTemp;
+	}*/
 }
 void Reviewer::keyPressEvent(QKeyEvent *event)
 {
